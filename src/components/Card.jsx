@@ -1,0 +1,103 @@
+import React, { useState } from 'react'
+import { Badge, Toast} from 'flowbite-react'
+
+function CardModel({ title, like, likedBy, image, category }) {
+
+  const [isLiked, setIsLiked] = useState(false)
+  const [isCopy, setIsCopy] = useState(false)
+  const notLiked = (like) => {
+    return (
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+        ></path>
+      </svg>
+    )
+  }
+  const liked = (like) => {
+    return (
+      <svg
+        className="w-6 h-6"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+          clip-rule="evenodd"
+        ></path>
+      </svg>
+    );
+  };
+
+  const share = (share) => {
+    return (
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"
+        ></path>
+      </svg>
+    );
+  };
+  return (
+    <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
+      <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-800 m-2 hover:scale-105">
+        <img className='h-52 overflow-hidden w-full' src={image} alt="" />
+        <h5 className="text-center w-full h-20 flex items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          {title && title}
+        </h5>
+        <div className="flex flex-wrap justify-around">
+          <span className="uppercase bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-2xl justify-center items-center mt-1 pt-1 dark:bg-blue-200 dark:text-blue-800">{category}</span>
+          <div className="flex">
+            <div className="flex items-center">
+              <Badge color="indigo" icon={isLiked ? liked : notLiked} size="md" onClick={() => setIsLiked(!isLiked)}>
+                {like && like}
+              </Badge>
+            </div>
+          </div>
+          <Badge icon={share} size="sm" color="indigo" onClick={() => { navigator.clipboard.writeText('hashim'); setIsCopy(true); setTimeout(() => setIsCopy(false), 3000) }}>
+          
+          </Badge>
+        </div>
+      </div>
+      {
+        isCopy && 
+        <div className='w-full fixed flex items-center justify-center top-4  left-0 z-100'>
+
+        <div id="toast-success" class="flex max-w-xs p-4 mb-4 border border-slate-300 text-gray-500 bg-white z-100 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
+    <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+    </div>
+    <div class="ml-3 text-sm font-normal mt-1 capitalize">Link copied to clipboard.</div>
+    <button type="button" onClick={()=> setIsCopy(false)} class="ml-2 -mx-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+</div>
+        </div>
+
+      }
+    </div>
+  );
+}
+
+export default CardModel
