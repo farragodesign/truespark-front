@@ -114,7 +114,7 @@ function CardModel({ title, like, likedBy, image, category , id }) {
   };
   return (
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
-      <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-800 m-2 hover:scale-105">
+      <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <img className='h-52 overflow-hidden w-full' src={image} alt="" />
         <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
