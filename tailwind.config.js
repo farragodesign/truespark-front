@@ -13,8 +13,7 @@ module.exports = {
       },
       zIndex: {
         '100': '9999',
-      }
-
+      },
     },
     fontFamily:{
       'true' :['Manjari','Roboto', 'sans-serif'],

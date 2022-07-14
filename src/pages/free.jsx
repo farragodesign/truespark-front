@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 
 function free() {
   return (
-    <div><div className="container">
-    <h1 className="text-center text-blue-600 text-4xl font-bold mt-4 uppercase">
+    <div className='container'>
+      {/* <div className="container"> */}
+    {/* <h1 className="text-center text-blue-600 text-4xl font-bold mt-4 uppercase">
       Hashifkfkl
     </h1>
     <section className="text-gray-600 body-font">
@@ -67,7 +68,13 @@ function free() {
   </div>
 </div>
 
-  </div></div>
+  </div> */}
+
+  <div className="mt-20 w-3/4 bg-slate-600 h-screen" />
+    <div className='w-11/12'>
+      
+    </div>
+  </div>
   )
 }
 
