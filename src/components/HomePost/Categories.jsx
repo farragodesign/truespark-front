@@ -22,7 +22,6 @@ const Categories = () => {
         {
         categories ?
             categories.map((category,index)=>{
-                console.log('hashim');
                 return( 
                     <div key={index}>
                         <h1 className={`uppercase text-blue-800 font-bold text-3xl my-4 font-anak text-center`}>{category.name}</h1>
@@ -49,7 +48,7 @@ const Categories = () => {
                                         )
                                     })
                                  :
-                                 <div className='flex flex-wrap w-full'>
+                            <div className=" w-full flex flex-wrap items-center justify-center md:m-3">
 
                                  { [1, 2, 3, 4].map((item, i) => {
                                      return (
