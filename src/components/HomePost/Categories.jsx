@@ -49,7 +49,7 @@ const Categories = () => {
                                         )
                                     })
                                  :
-                                 <div className='flex w-full'>
+                                 <div className='flex flex-wrap w-full'>
 
                                  { [1, 2, 3, 4].map((item, i) => {
                                      return (
@@ -73,7 +73,7 @@ const Categories = () => {
                     
                       <div class="animate-pulse h-4 md:h-10 w-28 mb-4 bg-slate-500 rounded my-4 font-anak text-2xl md:text-3xl text-white font-bold text-center"></div>
                      
-                     <div className='flex w-full'>
+                     <div className='flex flex-wrap w-full'>
                      { [1, 2, 3, 4].map((item, i) => {
                             return (
                                 <CardLoading/>

@@ -2,7 +2,7 @@ import React, { useState ,useContext } from 'react'
 import Axios from '../Axios'
 import Alert from './Alert'
 import Spinner from './Spinner'
-const {UserContext} = require('../Context')
+const {UserContext} = require('../context/UserContext')
 const {useNavigate} = require('react-router-dom')
 
 const Signup = ({onClick , isLogin , onSignup}) => {

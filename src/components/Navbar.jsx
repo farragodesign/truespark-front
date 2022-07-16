@@ -1,19 +1,22 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import Axios from '../Axios'
-import { UserContext } from '../Context'
+import { UserContext } from '../context/UserContext'
 import DropdownMenu from './DropdownMenu'
 import ErrorToast from './ErrorToast'
 import LoginControl from './LoginControl'
 import { useNavigate } from 'react-router-dom'
+import { AdminContext } from '../context/AdminContext'
 
 const HomeNavbar = () => {
-    const navigate = useNavigate()
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
   const [isLogin, setIsLogin] = useState(false)
-  const {user , setUser} = useContext(UserContext)
   const [errorOnLogout, setErrorOnLogout] = useState('')
   const [categories, setCategories] = useState([])
+  const {user , setUser} = useContext(UserContext)
+  const {admin , setAdmin} = useContext(AdminContext)
+  
 
   useEffect(()=>{
       Axios.get('/categories').then((data)=>{
@@ -24,6 +27,7 @@ const HomeNavbar = () => {
           console.log(err)
       }
       )
+    
   },[])
 
   const logoutHandler = () => {
@@ -49,17 +53,46 @@ const HomeNavbar = () => {
     }
     )
   }
+
+  const adminLogout = () => {
+    const jwt = localStorage.getItem('jwt')
+    Axios.post('/admin/logout' , {jwt}).then(res => {
+      console.log(res.data)
+      if (res.data.message) {
+        setErrorOnLogout(res.data.message)
+        setTimeout(() => setErrorOnLogout(''), 3000)
+      }
+      else {
+        setErrorOnLogout('')
+        setAdmin(null)
+        localStorage.removeItem('jwt')
+        navigate('/about')
+        setTimeout(() => navigate('/') , 100)
+      }
+    }
+    ).catch(err => {
+      console.log(err ? err.response.data.message : 'Something went wrong');
+      setErrorOnLogout(err ? err.response.data.message : 'Something went wrong')
+      setTimeout(() => setErrorOnLogout(''), 3000)
+    }
+    )
+  }
   return (
     <div>
 
-      <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray- fixed z-100 w-full m-0 top-0">
+      <nav className="bg-slate-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray- fixed z-100 w-full m-0 top-0">
         <div className="container flex justify-between flex-wrap w-full items-center mx-auto ">
           <NavLink to="/" className="flex items-center">
             <img src="https://flowbite.com/docs/images/logo.svg" className="mr-3 h-6 sm:h-9" alt="Logo" />
             <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Truespark</span>
           </NavLink>
           <div className="flex md:order-2  w-auto justify-end">
-           { user ? <DropdownMenu user={user} logoutHandler={logoutHandler}/> : <button type="button" className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 `} onClick={() => setIsLogin(!isLogin)}>Login</button>} 
+           { user ? <DropdownMenu user={user} logoutHandler={logoutHandler}/> 
+           : admin ?
+          <button type="button" onClick={adminLogout} className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 `}>Logout</button>
+           :
+           <button type="button" className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 `} onClick={() =>setIsLogin(!isLogin)}>Login</button>}
+            
             <button data-collapse-toggle="mobile-menu-4" type="button" className={`inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600  ${user && 'ml-36'} `} aria-controls="mobile-menu-4" aria-expanded="false">
               <span className="sr-only">Open main menu</span>
               <svg onClick={() => { setIsOpen(true) }} className={`${isOpen && 'hidden'} w-6 h-6`} fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
@@ -70,6 +103,12 @@ const HomeNavbar = () => {
             <li>
               <NavLink to="/" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Home</NavLink>
             </li>
+            {
+                admin &&
+                <li>
+                <NavLink to="/dashbord" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Dashbord</NavLink>
+              </li>
+              }
             <li>
               <NavLink to="/about" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">About</NavLink>
             </li>
@@ -99,6 +138,14 @@ const HomeNavbar = () => {
                   <span class="ml-3 uppercase">Home</span>
                 </NavLink>
               </li>
+              {
+                admin &&
+                <li>
+                <NavLink to='/dashbord' class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span class="ml-3 uppercase">Dashbord</span>
+                </NavLink>
+              </li>
+              }
               <li>
                 <NavLink to='/about' class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                   <span class="flex-1 ml-3 whitespace-nowrap uppercase">about</span>

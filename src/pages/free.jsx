@@ -3,79 +3,143 @@ import { Link } from 'react-router-dom'
 
 function free() {
   return (
-    <div className='container'>
-      {/* <div className="container"> */}
-    {/* <h1 className="text-center text-blue-600 text-4xl font-bold mt-4 uppercase">
-      Hashifkfkl
-    </h1>
-    <section className="text-gray-600 body-font">
-      <div className="container px-5 py-24 mx-auto">
-        <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-            <Link
-              to={"/post/"}
-              className="p-4 md:w-1/3 sm:mb-0 mb-6"
-              key='1'
-            >
-              <div className="rounded-lg h-64 overflow-hidden">
-                <img
-                  alt="content"
-                  className="w-full h-64 object-cover object-center"
-                  src=''
-                />
-              </div>
-              <h2 className="text-xl font-medium title-font text-gray-900 mt-5 text-center">
-                i am th e title
-              </h2>
-              <div class="px-6">
-                <h2 className="font-sm text-gray-400 mt-5 text-center">
-                 ✒️ i am the auther
-                </h2>
-              </div>
-
-              <div className="text-indigo-500 inline-flex items-center mt-3">
-                view post
+    <section className="bg-gray-900 mt-20">
+        <div className="container px-6 py-10 mx-auto">
+          <h1 className="text-3xl font-semibold text-white capitalize lg:text-4xl">
+            VAHDA <br /> Admin{" "}
+            <span className="underline decoration-blue-500">Dashboard</span>
+          </h1>
+          {/* <p className="mt-4 text-gray-500 xl:mt-6">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
+            quam voluptatibus
+          </p> */}
+          <div className="grid grid-cols-1 gap-8 mt-8 xl:mt-12 xl:gap-12 md:grid-cols-2 xl:grid-cols-3">
+            <div className="p-8 space-y-3 border-2 border-blue-400">
+              <Link
+                to={"/create-post"}
+                className="text-2xl bg-blue-500 hover:bg-blue-300 px-4 py-2 rounded-lg font-semibold text-white capitalize"
+              >
+                Create New Post
+              </Link>
+              <p className="text-gray-500 py-10">
+                
+              </p>
+              <Link
+                to={"/all-posts"}
+                className="inline-flex p-2 px-4 capitalize transition-colors duration-200 transform  text-white bg-gray-800  hover:text-gray-800 hover:bg-white"
+              >
+                view all
                 <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
                   fill="none"
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  className="w-4 h-4 ml-2"
                   viewBox="0 0 24 24"
+                  stroke="currentColor"
                 >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
                 </svg>
-              </div>
-            </Link>
-          
+              </Link>
+            </div>
+            <div className="p-8 space-y-3 border-2 border-blue-400 rounded-xl">
+              <Link
+                to={"/create-author"}
+                className="text-2xl bg-blue-500 hover:bg-blue-300 px-4 py-2 rounded-lg font-semibold text-white capitalize"
+              >
+                Create New Author Section 
+              </Link>
+              <p className="text-gray-500 py-10"></p>
+
+              <Link
+                to={"/create-author"}
+                className="inline-flex p-2 px-4 capitalize transition-colors duration-200 transform  text-white bg-gray-800  hover:text-gray-800 hover:bg-white"
+              >
+                view all
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </Link>
+            </div>
+            <div className="p-8 space-y-3 border-2 border-blue-400 rounded-xl">
+              <Link
+                to={"/create-category"}
+                className="text-2xl bg-blue-500 hover:bg-blue-300 px-4 py-2 rounded-lg font-semibold text-white capitalize"
+              >
+                Create New Category
+              </Link>
+              <p className="text-gray-500 py-10"></p>
+
+              <Link
+                to={"/create-category"}
+                className="inline-flex p-2 text-white capitalize transition-colors duration-200 transform bg-gray-800  hover:text-gray-800 hover:bg-white"
+              >
+                view all
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </Link>
+            </div>
+            <div className="p-8 space-y-3 border-2 border-blue-400 rounded-xl">
+              <Link
+                to={"/create-video"}
+                className="text-2xl bg-blue-500 hover:bg-blue-300 px-4 py-2 rounded-lg font-semibold text-white capitalize"
+              >
+                Add New Video
+              </Link>
+              <p className="text-gray-500 py-10"></p>
+
+              <Link
+                to={"/create-video"}
+                className="inline-flex p-2 px-4 capitalize transition-colors duration-200 transform  text-white bg-gray-800  hover:text-gray-800 hover:bg-white"
+              >
+                view all
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="w-6 h-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
-
-    <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-  <div class="animate-pulse flex space-x-4">
-    <div class="rounded-full bg-slate-700 h-10 w-10"></div>
-    <div class="flex-1 space-y-6 py-1">
-      <div class="h-2 bg-slate-700 rounded"></div>
-      <div class="space-y-3">
-        <div class="grid grid-cols-3 gap-4">
-          <div class="h-2 bg-slate-700 rounded col-span-2"></div>
-          <div class="h-2 bg-slate-700 rounded col-span-1"></div>
-        </div>
-        <div class="h-2 bg-slate-700 rounded"></div>
-      </div>
-    </div>
-  </div>
-</div>
-
-  </div> */}
-
-  <div className="mt-20 w-3/4 bg-slate-600 h-screen" />
-    <div className='w-11/12'>
-      
-    </div>
-  </div>
+      </section>
   )
+  
 }
 
 export default free

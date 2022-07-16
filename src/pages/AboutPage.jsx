@@ -2,7 +2,7 @@ import React from 'react'
 
 const AboutPage = () => {
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center w-full h-screen '>
         <h1 className='uppercase mt-24 text-blue-700 text-3xl font-anak font-bold text-center'>About us</h1>
         <div className='w-11/12 md:w-5/12 mt-8 md:mt-12 h-12  text-justify font-anak text-lg'>
             <p>
@@ -12,7 +12,7 @@ const AboutPage = () => {
             </p>
         </div>
     </div>
-  )
+  )   
 }
 
 export default AboutPage

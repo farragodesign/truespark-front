@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import Axios from '../Axios'
-import { UserContext } from '../Context'
+import { UserContext } from '../context/UserContext'
 import Alert from './Alert'
 import Spinner from './Spinner'
 import { useNavigate } from 'react-router-dom'

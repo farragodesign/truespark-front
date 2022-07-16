@@ -4,20 +4,32 @@ import HomePage from './pages/HomePage';
 import Free from './pages/free';
 import Navbar from './components/Navbar';
 import AboutPage from './pages/AboutPage';
-import {UserProvider} from './Context';
+import {UserProvider} from './context/UserContext';
 import Filtered from './pages/Filtered';
-// import {Route , Routes} from 'react-router-dom';
+import Footer from './components/Footer';
+import Error from './pages/Error';
+import AdminLogin from './pages/admin/AdminLogin';
+import { AdminProvider } from './context/AdminContext';
+import AdminProtect from './protected/AdminProtect';
+import Dashboard from './pages/admin/Dashboard';
 
 function App() {
   return (
     <div>
     <UserProvider>
+    <AdminProvider>
       <Navbar />
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path='/free' element={<Free />} />
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/category/:id' element={<Filtered />}/>
+      <Route path='/admin' element={<AdminLogin />}/>
+      <Route path='*' element={<Error/>}/>
+      <Route path='/dashbord' element={<AdminProtect><Dashboard/></AdminProtect>} />
     </Routes>
+    <Footer/>
+    </AdminProvider>
     </UserProvider>
     </div>
   
