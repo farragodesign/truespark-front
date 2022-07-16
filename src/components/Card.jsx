@@ -4,6 +4,8 @@ import { UserContext } from '../context/UserContext'
 import ErrorToast from './ErrorToast'
 import Axios from '../Axios'
 import { AdminContext } from '../context/AdminContext'
+import {Link} from 'react-router-dom'
+import DeleteModal from './DeleteModal'
 
 function CardModel({ title, like, likedBy, image, category, id }) {
   // user context
@@ -15,6 +17,7 @@ function CardModel({ title, like, likedBy, image, category, id }) {
   const [pleaseLogin, setPleaseLogin] = useState('')
   const [iscategory, setIsCategory] = useState('')
   const [likes, setLikes] = useState(like || 0)
+  const [isDeleteToggle, setIsDeleteToggle] = useState('')
 
 
   // checking if user is liked the article before rendering
@@ -144,23 +147,38 @@ function CardModel({ title, like, likedBy, image, category, id }) {
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
       <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <img className='h-52 overflow-hidden w-full' src={image} alt="" />
-        <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+       <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
         </h5>
         <div className="flex flex-wrap justify-around">
+        <Link to={`/category/${category}`}>
           <span className="cursor-pointer uppercase bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-2xl justify-center items-center mt-1 pt-1 dark:bg-blue-200 dark:text-blue-800">{iscategory ? iscategory : 'NO category'}</span>
+         </Link>
           <div className="flex">
             <div className="flex items-center cursor-pointer">
-              <Badge color="indigo" icon={admin ? edit : isLiked ? liked : notLiked} size="md" onClick={likeHandler}>
-                { admin ? null : likes}
-              </Badge>
+              {
+                admin ?
+                  <Badge color="indigo" icon={edit} size="md" onClick={likeHandler}/>
+                  :
+                  <Badge color="indigo" icon={isLiked ? liked : notLiked} size="md" onClick={likeHandler}>
+                    {likes}
+                  </Badge>
+              }
+
             </div>
           </div>
           <div className='cursor-pointer'>
-
-            <Badge icon={admin ? deleteItem : share} size="sm" color="indigo" onClick={() => { navigator.clipboard.writeText(`https://truespark.ml/articles/${id}`); setIsCopy(true); setTimeout(() => setIsCopy(false), 3000) }}>
+            {
+              admin ?
+                <Badge onClick={()=>setIsDeleteToggle(title)} color="indigo" icon={deleteItem} size="md" />
+                :
+                <Badge icon={share} size="sm" color="indigo" onClick={() => { navigator.clipboard.writeText(`https://truespark.ml/articles/${id}`); setIsCopy(true); setTimeout(() => setIsCopy(false), 3000) }}>
 
             </Badge>
+
+            }
+
+            
           </div>
         </div>
       </div>
@@ -181,6 +199,11 @@ function CardModel({ title, like, likedBy, image, category, id }) {
         </div>
 
       }
+    {
+      isDeleteToggle &&
+     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('')}/>
+    } 
+
       <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin('')} />
     </div>
   );
