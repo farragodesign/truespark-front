@@ -12,6 +12,7 @@ import AdminLogin from './pages/admin/AdminLogin';
 import { AdminProvider } from './context/AdminContext';
 import AdminProtect from './protected/AdminProtect';
 import Dashboard from './pages/admin/Dashboard';
+import EditItems from './pages/admin/EditItems';
 
 function App() {
   return (
@@ -25,8 +26,9 @@ function App() {
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/category/:id' element={<Filtered />}/>
       <Route path='/admin' element={<AdminLogin />}/>
-      <Route path='*' element={<Error/>}/>
       <Route path='/dashbord' element={<AdminProtect><Dashboard/></AdminProtect>} />
+      <Route path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
+      <Route path='*' element={<Error/>}/>
     </Routes>
     <Footer/>
     </AdminProvider>

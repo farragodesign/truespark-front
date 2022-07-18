@@ -6,6 +6,7 @@ import Axios from '../Axios'
 import { AdminContext } from '../context/AdminContext'
 import {Link} from 'react-router-dom'
 import DeleteModal from './DeleteModal'
+import SuccessTost from './SuccessTost'
 
 function CardModel({ title, like, likedBy, image, category, id }) {
   // user context
@@ -150,15 +151,15 @@ function CardModel({ title, like, likedBy, image, category, id }) {
        <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
         </h5>
-        <div className="flex flex-wrap justify-around">
-        <Link to={`/category/${category}`}>
-          <span className="cursor-pointer uppercase bg-blue-100 text-blue-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded-2xl justify-center items-center mt-1 pt-1 dark:bg-blue-200 dark:text-blue-800">{iscategory ? iscategory : 'NO category'}</span>
+        <div className="flex flex-auto flex-wrap justify-around">
+        <Link className='cursor-pointer bg-indigo-100 px-2.5 py-0.5 flex rounded-2xl justify-center items-center ' to={`/category/${category}`}>
+          <span className=" uppercase text-indigo-800 text-sm font-medium  dark:bg-blue-200 dark:text-indigo-800">{iscategory ? iscategory : 'NO category'}</span>
          </Link>
           <div className="flex">
             <div className="flex items-center cursor-pointer">
               {
                 admin ?
-                  <Badge color="indigo" icon={edit} size="md" onClick={likeHandler}/>
+                <Link to={`/${id}/edit`} >  <Badge color="indigo" icon={edit} size="md"/> </Link>
                   :
                   <Badge color="indigo" icon={isLiked ? liked : notLiked} size="md" onClick={likeHandler}>
                     {likes}
@@ -183,25 +184,12 @@ function CardModel({ title, like, likedBy, image, category, id }) {
         </div>
       </div>
       {
-
-        <div className={`-translate-y-full opacity-0 transition-all w-full fixed flex items-center justify-center top-4  left-0 z-100 ${isCopy && 'opacity-100 -translate-y-0'}`}>
-
-          <div id="toast-success" class="flex max-w-xs p-4 mb-4 border border-slate-400 text-gray-500 bg-white z-100 rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
-            <div class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-green-500 bg-green-100 rounded-lg dark:bg-green-800 dark:text-green-200">
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-            </div>
-            <div class="ml-3 text-sm font-normal mt-1 capitalize">Link copied to clipboard.</div>
-            <button type="button" onClick={() => setIsCopy(false)} class="ml-2 -mx-1.5 bg-white text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-success" aria-label="Close">
-              <span class="sr-only">Close</span>
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-            </button>
-          </div>
-        </div>
+<SuccessTost data={'Link copied to clipbord'} isSuccess={isCopy} setSuccess={() => setIsCopy(false)}/>
 
       }
     {
       isDeleteToggle &&
-     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('')}/>
+     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('') } id={id}/>
     } 
 
       <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin('')} />
