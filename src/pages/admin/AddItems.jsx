@@ -1,13 +1,13 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Axios from "../../Axios";
-import ErrorToast from "../../components/ErrorToast";
-import Spinner from "../../components/Spinner";
-import SuccessTost from "../../components/SuccessTost";
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
+import Axios from '../../Axios';
+import ErrorToast from '../../components/ErrorToast';
+import Spinner from '../../components/Spinner';
+import SuccessTost from '../../components/SuccessTost';
 
-const EditItems = () => {
-  const [isLoading, setIsLoading] = useState(false);
+const AddItems = () => {
+    const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -16,28 +16,12 @@ const EditItems = () => {
   const [author, setAuthor] = useState("");
   const [data, setData] = useState("");
   const [categories, setCategories] = useState([]);
-  const [isSuccess, setIsSuccess] = useState(false);
+    const [isSuccess, setIsSuccess] = useState(false);
 
   // getting the id of the article by url
   const { id } = useParams();
 
   useEffect(() => {
-    Axios.get(`/articles/${id}`)
-      .then((res) => {
-        console.log(res.data.blog);
-        setData(res.data.blog);
-        setTitle(res.data.blog.title);  // lervpgzw
-        setContent(res.data.blog.content);
-        setImage(res.data.blog.image);
-        setCategory(res.data.blog.category);
-        setAuthor(res.data.blog.author);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setIsError(err.message);
-        setIsLoading(false);
-      });
-
     Axios.get("/categories")
       .then((res) => {
         setCategories(res.data.categories);
@@ -63,7 +47,7 @@ const EditItems = () => {
 
 
   // updating the article
-  const editHandler = (e) => {
+  const createHandler = (e) => {
     e.preventDefault();  
     setIsLoading(true);
     const jwt = localStorage.getItem("jwt");
@@ -79,11 +63,15 @@ const EditItems = () => {
           jwt,
         };
         console.log(data);
-        Axios.patch(`/articles/${id}`, data)
+        Axios.post(`/articles/`, data)
           .then((res) => {
             setIsLoading(false);
             console.log(res.data);
             setIsSuccess(true);
+            setTimeout(() => {
+                setIsSuccess(false);
+                }
+                , 3000);
           }
           )
           .catch((err) => {
@@ -103,11 +91,11 @@ const EditItems = () => {
     <div className="flex w-full h-fit items-center justify-center mt-20">
       <div>
         <h1 className="font-bold font-anak text-xl md:text-2xl text-center uppercase text-blue-700">
-          Edit Article
+          Add Article
         </h1>
 
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form onSubmit={(e)=> editHandler(e)}
+          <form onSubmit={(e)=> createHandler(e)}
           >
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -242,8 +230,7 @@ const EditItems = () => {
                   type="submit"
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                {isLoading ? <Spinner/> : 'Publish'}
-
+                  {isLoading ? <Spinner/> : 'Publish'}
                 </button>
               </div>
             </div>
@@ -251,9 +238,10 @@ const EditItems = () => {
         </div>
       </div>
       {isError && <ErrorToast onClick={()=>setIsError(false)} event={isError}/>}
-      {isSuccess && <SuccessTost isSuccess={isSuccess} setSuccess={()=> setIsSuccess(false)} data={'item edited successfully'} />}
+      {isSuccess && <SuccessTost isSuccess={isSuccess} setSuccess={()=> setIsSuccess(false)} data={'item Added successfully'} />}
+
     </div>
   );
 };
 
-export default EditItems;
+export default AddItems
