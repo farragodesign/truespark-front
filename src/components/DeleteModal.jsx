@@ -6,7 +6,7 @@ import SuccessTost from "./SuccessTost";
 const { useNavigate ,useParams } = require("react-router-dom");
 
 
-const DeleteModal = ({ closeModal, name, id }) => {
+const DeleteModal = ({ closeModal, name, id , category}) => {
   const [nameHere, setNameHere] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState("");
@@ -19,7 +19,7 @@ const DeleteModal = ({ closeModal, name, id }) => {
     const jwt = localStorage.getItem("jwt");
     setIsLoading(true);
 
-    Axios.delete(`/articles/${id_here}`, {
+    Axios.delete(`/articles/${id}`, {
       headers: {
           'Authorization': `Bearer ${jwt}`
       },
@@ -32,8 +32,10 @@ const DeleteModal = ({ closeModal, name, id }) => {
         setNameHere("");
         setIsLoading(false);
         setTimeout(() => closeModal(), 500);
+        console.log(category);
+        console.log("deleted");
         navigate(`/about`)
-       setTimeout(()=> {navigate(`/category/${id}`)
+       setTimeout(()=> {navigate(`/category/${category}`) 
       }, 500) 
     })
       .catch((err) => {

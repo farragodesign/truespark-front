@@ -61,7 +61,7 @@ const AddItems = () => {
           category:"62cfc829a8aeccc47cc09521",
           author,
           jwt,
-        };
+        }
         console.log(data);
         Axios.post(`/articles/`, data)
           .then((res) => {
@@ -80,7 +80,15 @@ const AddItems = () => {
           }
           );
 
-      })
+      }).catch((err) => {
+        setIsError(err.message);
+        setTimeout(() => {
+            setIsError("");
+            }
+            , 3000);
+        setIsLoading(false);
+      }
+        ); 
 
 
   
@@ -170,14 +178,19 @@ const AddItems = () => {
                     Category
                   </label>
                   <select
+                    value={category && category}
+                    onChange={(e) => setCategory(e.target.value)}
                     id="country"
                     name="country"
                     autocomplete="country-name"
                     class="mt-1 block w-full overflow-hidden py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    {
+                        categories.map((category,i) => {
+                            return <option key={i} value={category._id}>{category.name}</option>
+                        }
+                        )
+                    }
                   </select>
                 </div>
 
@@ -228,7 +241,7 @@ const AddItems = () => {
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   {isLoading ? <Spinner/> : 'Publish'}
                 </button>

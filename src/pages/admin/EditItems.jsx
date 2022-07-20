@@ -29,7 +29,7 @@ const EditItems = () => {
         setTitle(res.data.blog.title);  // lervpgzw
         setContent(res.data.blog.content);
         setImage(res.data.blog.image);
-        setCategory(res.data.blog.category);
+        setCategory(res.data.blog.category._id);
         setAuthor(res.data.blog.author);
         setIsLoading(false);
       })
@@ -84,10 +84,18 @@ const EditItems = () => {
             setIsLoading(false);
             console.log(res.data);
             setIsSuccess(true);
+            setTimeout(() => {
+              setIsSuccess(false);
+            }
+            , 3000);
           }
           )
           .catch((err) => {
             setIsError(err.message);
+            setTimeout(() => {
+                setIsError('');
+                }
+                , 3000);
             setIsLoading(false);
           }
           );
@@ -152,7 +160,7 @@ const EditItems = () => {
                       onChange={(e) => setContent(e.target.value)}
                       id="about"
                       name="about"
-                      rows="3"
+                      rows="10"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
                       placeholder="please write your body here .........."
                     ></textarea>
@@ -182,14 +190,21 @@ const EditItems = () => {
                     Category
                   </label>
                   <select
+                    value={category && category}
+                    onChange={(e) => setCategory(e.target.value)}
                     id="country"
                     name="country"
                     autocomplete="country-name"
                     class="mt-1 block w-full overflow-hidden py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    <option>United States</option>
-                    <option>Canada</option>
-                    <option>Mexico</option>
+                    {
+                      categories.map((category) => {  
+                        return (
+                          <option key={category._id} value={category._id}>{category.name}</option>
+                        )
+                      }
+                      )
+                    }
                   </select>
                 </div>
 
@@ -224,7 +239,7 @@ const EditItems = () => {
                             id="file-upload"
                             name="file-upload"
                             type="file"
-                            // className="sr-only"
+                            className="sr-only"
                             onChange={(e) => setImage(e.target.files[0])}
                           />
                         </label>
@@ -240,7 +255,7 @@ const EditItems = () => {
               <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                 <button
                   type="submit"
-                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                 {isLoading ? <Spinner/> : 'Publish'}
 

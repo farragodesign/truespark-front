@@ -189,7 +189,7 @@ function CardModel({ title, like, likedBy, image, category, id }) {
       }
     {
       isDeleteToggle &&
-     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('') } id={id}/>
+     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('') } id={id} category={category}/>
     } 
 
       <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin('')} />

@@ -1,26 +1,11 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
-function free() {
+const Cards = () => {
   return (
-    <div class="container items-center px-4 py-8 m-auto mt-5">
-  <div class="flex flex-wrap pb-3 mx-4 md:mx-24 lg:mx-0">
-    <ul
-      class="w-full sm:w-4/5 text-xs sm:text-sm justify-center lg:justify-end items-center flex flex-row space-x-1 mt-6 overflow-hidden mb-4">
-      <li><button
-          class="px-4 py-2 bg-indigo-500 rounded-full text-sm text-gray-100 hover:bg-indigo-700 hover:text-gray-200">30
-          days</button></li>
-      <li><button
-          class="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 hover:bg-indigo-700 hover:text-gray-200">90
-          days</button></li>
-      <li><button
-          class="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 hover:bg-indigo-700 hover:text-gray-200">6
-          months</button></li>
-      <li><button
-          class="px-4 py-2 bg-gray-200 rounded-full text-sm text-gray-700 hover:bg-indigo-700 hover:text-gray-200">12
-          months</button></li>
-    </ul>
-    <div class="w-full p-2 lg:w-1/4 md:w-1/2">
+    <div>
+      <div class="flex flex-wrap pb-3 mx-4 md:mx-24 lg:mx-0">
+   
+    <div class="w-full p-2 lg:w-1/2 md:w-1/2">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -57,7 +42,7 @@ function free() {
         </div>
       </div>
     </div>
-    <div class="w-full p-2 lg:w-1/4 md:w-1/2">
+    <div class="w-full p-2 lg:w-1/2 md:w-1/2">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -89,7 +74,7 @@ function free() {
         </div>
       </div>
     </div>
-    <div class="w-full p-2 lg:w-1/4 md:w-1/2">
+    <div class="w-full p-2 lg:w-1/2 md:w-1/2">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -124,7 +109,7 @@ function free() {
         </div>
       </div>
     </div>
-    <div class="w-full p-2 lg:w-1/4 md:w-1/2">
+    <div class="w-full p-2 lg:w-1/2 md:w-1/2">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -159,10 +144,8 @@ function free() {
     </div>
   </div>
 
-  
-</div>
+    </div>
   )
-  
 }
 
-export default free
+export default Cards
