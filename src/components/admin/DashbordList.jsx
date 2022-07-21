@@ -1,6 +1,7 @@
 import React from 'react'
 
-const dashbordList = () => {
+const dashbordList = ({usersInThisMonth,users,articles,categories}) => {
+
   return (
     <div>
         <section class="antialiased bg-gray-200 font-anak flex rounded-2xl w-full">
@@ -10,7 +11,7 @@ const dashbordList = () => {
       <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
         <div class="my-auto">
           <p class="font-bold">TOTAL USERS (THIS MONTH)</p>
-          <p class="text-lg">$40,000</p>
+          <p class="text-lg">{usersInThisMonth}</p>
         </div>
         <div class="my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -25,7 +26,7 @@ const dashbordList = () => {
       <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
         <div class="my-auto">
           <p class="font-bold">TOTAL USERS</p>
-          <p class="text-lg">$215,000</p>
+          <p class="text-lg">{users}</p>
         </div>
         <div class="my-auto">
 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -40,7 +41,7 @@ const dashbordList = () => {
       <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
         <div class="my-auto">
           <p class="font-bold">TOTAL ARTICLES</p>
-          <p class="text-lg">50%</p>
+          <p class="text-lg">{articles}</p>
         </div>
         <div class="my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -55,7 +56,7 @@ const dashbordList = () => {
       <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
         <div class="my-auto">
           <p class="font-bold">TOTAL CATEGORIES</p>
-          <p class="text-lg">18</p>
+          <p class="text-lg">{categories}</p>
         </div>
         <div class="my-auto">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -65,6 +66,31 @@ const dashbordList = () => {
       </div>
     </div>
     {/* <!--  Pending requests card end  --> */}
+
+    <div class="pl-1 w-full h-20 bg-yellow-400 rounded-lg shadow-md cursor-pointer">
+      <div class="flex w-full h-full py-2 px-4 bg-white rounded-lg justify-between">
+        <div class="my-auto">
+          <p class="font-bold">TOTAL LIKES</p>
+          <p class="text-lg">18</p>
+        </div>
+        <div class="my-auto">
+        <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+        ></path>
+      </svg>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
     </div>
