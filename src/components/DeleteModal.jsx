@@ -6,13 +6,13 @@ import SuccessTost from "./SuccessTost";
 const { useNavigate ,useParams } = require("react-router-dom");
 
 
-const DeleteModal = ({ closeModal, name, id , category}) => {
+const DeleteModal = ({ closeModal , name, id , category ,isCategory , setAllData }) => {
   const [nameHere, setNameHere] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const {id_here} = useParams();
+  const [isLoading, setIsLoading] = useState(false);  // for spinner
   const navigate = useNavigate();
+
   setTimeout(() => setNameHere(name), 500);
 
   const handleDelete = () => {
@@ -32,11 +32,7 @@ const DeleteModal = ({ closeModal, name, id , category}) => {
         setNameHere("");
         setIsLoading(false);
         setTimeout(() => closeModal(), 500);
-        console.log(category);
-        console.log("deleted");
-        navigate(`/about`)
-       setTimeout(()=> {navigate(`/category/${category}`) 
-      }, 500) 
+        setAllData(id);
     })
       .catch((err) => {
         console.log(err);
@@ -51,9 +47,44 @@ const DeleteModal = ({ closeModal, name, id , category}) => {
       });
   };
 
+  const handleCategoryDelete = () => {
+    const jwt = localStorage.getItem("jwt");
+    setIsLoading(true);
+
+    Axios.delete(`/categories/${id}`, {
+      headers: {
+          'Authorization': `Bearer ${jwt}`
+      },
+      data: {
+          jwt: jwt
+      }
+    })
+      .then(() => {
+        setIsSuccess(true);
+        setNameHere("");
+        setIsLoading(false);
+        setTimeout(() => closeModal(), 500);
+        setAllData(id)
+    }
+    )
+      .catch((err) => {
+        console.log(err);
+        setIsError(
+          err.response.data.message
+            ? err.response.data.message
+            : "Something went wrong"
+        );
+        setIsLoading(false);
+        setTimeout(()=> setNameHere(""),1000 ) 
+        setTimeout(() => closeModal(), 1500);
+      }
+    );
+
+  }
+
   return (
     <div>
-      <div className="w-full h-screen top-0 left-0 fixed z-100 bg-slate-400 bg-opacity-40 flex justify-center items-center">
+      <div className={`w-full h-screen ${isCategory && 'h-full'} rounded-2xl top-0 left-0 fixed z-100 bg-slate-400 bg-opacity-40 flex justify-center items-center`}>
         <div
           class={`overflow-y-auto overflow-x-hidden relative -translate-y-128 transition-all duration-1000 opacity-0 ${
             nameHere && "-translate-y-px opacity-100"
@@ -106,7 +137,7 @@ const DeleteModal = ({ closeModal, name, id , category}) => {
                   <span className="font-anak font-bold">{name}</span> ?
                 </h3>
                 <button
-                  onClick={handleDelete}
+                  onClick={!isCategory ? handleDelete : handleCategoryDelete}
                   data-modal-toggle="popup-modal"
                   type="button"
                   class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2"

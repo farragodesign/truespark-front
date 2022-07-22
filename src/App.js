@@ -14,7 +14,7 @@ import AdminProtect from './protected/AdminProtect';
 import Dashboard from './pages/admin/Dashboard';
 import EditItems from './pages/admin/EditItems';
 import AddItems from './pages/admin/AddItems';
-import AddCategory from './pages/admin/AddCategory';
+// import AddCategory from './pages/admin/AddCategory';
 
 function App() {
   return (
@@ -28,10 +28,10 @@ function App() {
       <Route path='/about' element={<AboutPage/>}/>
       <Route path='/category/:id' element={<Filtered />}/>
       <Route path='/admin' element={<AdminLogin />}/>
-      <Route path='/dashbord' element={<AdminProtect><Dashboard/></AdminProtect>} />
+      <Route path='/dashboard' element={<AdminProtect><Dashboard/></AdminProtect>} />
       <Route path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
       <Route path='/add-item' element={<AdminProtect><AddItems/></AdminProtect>} />
-      <Route path='/add-category' element={<AdminProtect><AddCategory/></AdminProtect>} />
+      {/* <Route path='/add-category' element={<AdminProtect><AddCategory/></AdminProtect>} /> */}
       
 
       <Route path='*' element={<Error/>}/>

@@ -1,16 +1,20 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Axios from '../../Axios'
-import ErrorToast from '../../components/ErrorToast'
-import Spinner from '../../components/Spinner'
-import SuccessTost from '../../components/SuccessTost'
+import ErrorToast from '../ErrorToast'
+import Spinner from '../Spinner'
+import SuccessTost from '../SuccessTost'
 
 
-const EditCategory = () => {
+const EditCategory = ({id,name}) => {
 
   const [category, setCategory] = useState('')
   const [error, setError] = useState('')
   const [success, setSuccess] = useState('')
   const [loading, setLoading] = useState(false)
+
+useEffect(() => {
+  setCategory(name)
+}, [name])
 
   const onSubmit = (e) => {
     e.preventDefault()
@@ -24,10 +28,10 @@ const EditCategory = () => {
         , 3000)
     } else {
       const jwt = localStorage.getItem('jwt')
-      Axios.post('/categories', { name:category, jwt })
+      Axios.patch(`/categories/${id}`, { name:category, jwt })
         .then(res => {
           setLoading(false)
-          setSuccess('Category added successfully')
+          setSuccess('Category edited successfully')
           setTimeout(() => {
             setSuccess('')
           }
@@ -49,11 +53,11 @@ const EditCategory = () => {
   return (
     <div>
 
-    <div className='w-full h-screen mt-20 flex items-center justify-center flex-col'>
-       <h1 className='uppercase font-anak font-bold text-blue-700 text-2xl'>ADD Category</h1>
-  	<form onSubmit={onSubmit} class="flex w-11/12 md:w-1/4 mt-4">
-    	<input value={category} onChange={(e)=> setCategory(e.target.value)} class="w-3/4 rounded-l-lg p-4 border-t mr-0 border-b border-l focus:border-gray-200 text-gray-800 border-gray-200 bg-white" placeholder="your category name here"/>
-		<button type='submit' class="px-8 rounded-r-lg bg-blue-700  text-gray-800 font-bold p-2 uppercase border-blue-800 border-t border-b border-r">{loading ? <Spinner/> : "ADD" }</button>
+    <div className='w-full h-full mt-20 flex items-center justify-center flex-col'>
+       <h1 className='uppercase font-anak font-bold text-blue-700 text-2xl'>Edit Category</h1>
+  	<form onSubmit={onSubmit} class="flex w-9/12 transition-all  mt-4">
+    	<input value={category} onChange={(e)=> setCategory(e.target.value)} class="w-3/4 focus:w-full transition-all rounded-l-lg p-4 border-t mr-0 border-b border-l focus:border-gray-200 text-gray-800 border-gray-200 bg-white" placeholder="your category name here"/>
+		<button type='submit' class="px-8 rounded-r-lg bg-blue-700  text-gray-800 font-bold p-2 uppercase border-blue-800 border-t border-b border-r">{loading ? <Spinner/> : "EDIT" }</button>
 	</form>
 <ul class='marker:text-green list-outside list-disc ml-6 mt-8'>
   <li className='font-anak text-blue-700'>please use singular words.</li>

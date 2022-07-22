@@ -8,7 +8,7 @@ import {Link} from 'react-router-dom'
 import DeleteModal from './DeleteModal'
 import SuccessTost from './SuccessTost'
 
-function CardModel({ title, like, likedBy, image, category, id }) {
+function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
   // user context
   const { user } = useContext(UserContext)
   // admin context
@@ -141,58 +141,100 @@ function CardModel({ title, like, likedBy, image, category, id }) {
 
   const deleteItem = () => {
     return (
-      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+        />
+      </svg>
     );
   }
   return (
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
       <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
-        <img className='h-52 overflow-hidden w-full' src={image} alt="" />
-       <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        <img className="h-52 overflow-hidden w-full" src={image} alt="" />
+        <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
         </h5>
         <div className="flex flex-auto flex-wrap justify-around">
-        <Link className='cursor-pointer bg-indigo-100 px-2.5 py-0.5 flex rounded-2xl justify-center items-center ' to={`/category/${category}`}>
-          <span className=" uppercase text-indigo-800 text-sm font-medium  dark:bg-blue-200 dark:text-indigo-800">{iscategory ? iscategory : 'NO category'}</span>
-         </Link>
+          <Link
+            className="cursor-pointer bg-indigo-100 px-2.5 py-0.5 flex rounded-2xl justify-center items-center "
+            to={`/category/${category}`}
+          >
+            <span className=" uppercase text-indigo-800 text-sm font-medium  dark:bg-blue-200 dark:text-indigo-800">
+              {iscategory ? iscategory : "NO category"}
+            </span>
+          </Link>
           <div className="flex">
             <div className="flex items-center cursor-pointer">
-              {
-                admin ?
-                <Link to={`/${id}/edit`} >  <Badge color="indigo" icon={edit} size="md"/> </Link>
-                  :
-                  <Badge color="indigo" icon={isLiked ? liked : notLiked} size="md" onClick={likeHandler}>
-                    {likes}
-                  </Badge>
-              }
-
+              {admin ? (
+                <Link to={`/${id}/edit`}>
+                  {" "}
+                  <Badge color="indigo" icon={edit} size="md" />{" "}
+                </Link>
+              ) : (
+                <Badge
+                  color="indigo"
+                  icon={isLiked ? liked : notLiked}
+                  size="md"
+                  onClick={likeHandler}
+                >
+                  {likes}
+                </Badge>
+              )}
             </div>
           </div>
-          <div className='cursor-pointer'>
-            {
-              admin ?
-                <Badge onClick={()=>setIsDeleteToggle(title)} color="indigo" icon={deleteItem} size="md" />
-                :
-                <Badge icon={share} size="sm" color="indigo" onClick={() => { navigator.clipboard.writeText(`https://truespark.ml/articles/${id}`); setIsCopy(true); setTimeout(() => setIsCopy(false), 3000) }}>
-
-            </Badge>
-
-            }
-
-            
+          <div className="cursor-pointer">
+            {admin ? (
+              <Badge
+                onClick={() => setIsDeleteToggle(title)}
+                color="indigo"
+                icon={deleteItem}
+                size="md"
+              />
+            ) : (
+              <Badge
+                icon={share}
+                size="sm"
+                color="indigo"
+                onClick={() => {
+                  navigator.clipboard.writeText(
+                    `https://truespark.ml/articles/${id}`
+                  );
+                  setIsCopy(true);
+                  setTimeout(() => setIsCopy(false), 3000);
+                }}
+              ></Badge>
+            )}
           </div>
         </div>
       </div>
       {
-<SuccessTost data={'Link copied to clipbord'} isSuccess={isCopy} setSuccess={() => setIsCopy(false)}/>
-
+        <SuccessTost
+          data={"Link copied to clipbord"}
+          isSuccess={isCopy}
+          setSuccess={() => setIsCopy(false)}
+        />
       }
-    {
-      isDeleteToggle &&
-     <DeleteModal name={isDeleteToggle} closeModal={()=> setIsDeleteToggle('') } id={id} category={category}/>
-    } 
+      {isDeleteToggle && (
+        <DeleteModal
+          name={isDeleteToggle}
+          closeModal={() => setIsDeleteToggle("")}
+          id={id}
+          category={category}
+          setAllData={setAllData}
+        />
+      )}
 
-      <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin('')} />
+      <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin("")} />
     </div>
   );
 }

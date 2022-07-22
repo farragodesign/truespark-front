@@ -54,12 +54,12 @@ const AddItems = () => {
     const jwt = localStorage.getItem("jwt");
     uploadToCloudinary(image)
       .then((res) => {
-        const imageUrl = res.data.secure_url;
+        const imageUrl_HERE = res.data.secure_url;
         const data = {
           title,
           content,
-          image: imageUrl,
-          category:"62cfc829a8aeccc47cc09521",
+          image: imageUrl_HERE,
+          category,
           author,
           jwt,
         }

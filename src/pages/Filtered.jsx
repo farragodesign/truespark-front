@@ -55,6 +55,7 @@ function Filtered() {
                         image={post.image}
                         id={post._id}
                         category={post.category ? post.category._id : "No Category"}
+                        setAllData={(id) => setPosts(posts.filter((post) => post._id !== id))}
                     />
                 )
             })

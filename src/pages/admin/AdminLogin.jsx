@@ -53,7 +53,7 @@ const AdminLogin = () => {
                     console.log(res.data);
                     localStorage.setItem('jwt',res.data.token)
                     setAdmin(res.data.admin)
-                    setTimeout(() => navigate('/dashbord') , 100)
+                    setTimeout(() => navigate('/dashboard') , 100)
                     setUsername('')
                     setPassword('')
                 }

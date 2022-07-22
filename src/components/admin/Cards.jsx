@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Cards = () => {
+const Cards = ({isUser,IsArticles,IsCategory}) => {
   return (
     <div>
       <div class="flex flex-wrap justify-center  pb-3 mx-4 md:mx-24 lg:mx-0">
    
-    <div class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
+    <div onClick={isUser} class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -30,7 +30,7 @@ const Cards = () => {
         </div>
         <h1 class="text-3xl sm:text-4xl xl:text-5xl font-bold text-gray-700 mt-12 group-hover:text-gray-50 uppercase">users</h1>
         <div class="flex flex-row justify-between group-hover:text-gray-200">
-          <p>Bounce Rate</p>
+          <p className='unZ'>View All</p>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 group-hover:text-gray-200"
               viewBox="0 0 20 20" fill="currentColor">
@@ -42,7 +42,7 @@ const Cards = () => {
         </div>
       </div>
     </div>
-    <div class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
+    <div onClick={isUser} class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -67,7 +67,7 @@ const Cards = () => {
         </div>
         <h1 class="text-3xl sm:text-4xl xl:text-5xl font-bold text-gray-700 mt-12 group-hover:text-gray-50 uppercase">articles</h1>
         <div class="flex flex-row justify-between group-hover:text-gray-200">
-          <p>Bounce Rate</p>
+          <p className='unZ'>View All</p>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 group-hover:text-gray-200"
               viewBox="0 0 20 20" fill="currentColor">
@@ -79,7 +79,7 @@ const Cards = () => {
         </div>
       </div>
     </div>
-    <div class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
+    <div onClick={isUser} class="w-full p-2 lg:w-1/2 md:w-1/2 cursor-pointer">
       <div
         class="flex flex-col px-6 py-10 overflow-hidden bg-white hover:bg-gradient-to-br hover:from-purple-400 hover:via-blue-400 hover:to-blue-500 rounded-xl shadow-lg duration-300 hover:shadow-2xl group">
         <div class="flex flex-row justify-between items-center">
@@ -104,7 +104,7 @@ const Cards = () => {
         </div>
         <h1 class="text-3xl sm:text-4xl xl:text-5xl font-bold text-gray-700 mt-12 group-hover:text-gray-50 uppercase">Categories</h1>
         <div class="flex flex-row justify-between group-hover:text-gray-200">
-          <p>Bounce Rate</p>
+          <p className='unZ'>View All</p>
           <span>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600 group-hover:text-gray-200"
               viewBox="0 0 20 20" fill="currentColor">

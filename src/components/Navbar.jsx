@@ -106,7 +106,7 @@ const HomeNavbar = () => {
             {
                 admin &&
                 <li>
-                <NavLink to="/dashbord" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Dashbord</NavLink>
+                <NavLink to="/dashboard" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Dashboard</NavLink>
               </li>
               }
             <li>
