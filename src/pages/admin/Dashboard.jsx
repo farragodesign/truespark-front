@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Axios from "../../Axios";
 import AddCategory from "../../components/admin/AddCategory";
+import ArticlesList from "../../components/admin/ArticlesList";
 import Cards from "../../components/admin/Cards";
 import CategoryList from "../../components/admin/CategoryList";
 import DashbordList from "../../components/admin/DashbordList";
@@ -143,16 +144,28 @@ const Dashboard = () => {
           />
         </div>
         <div
-          className={`translate-x-128 duration-1000 opacity-0 transition-all w-9/12 m-0 md:my-4 right-0  absolute ${
-            isUserDetails ? "-translate-x-0 opacity-100 relative " : ""
+          className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0  ${
+            isUserDetails ? 
+            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
           } `}
         >
           <UsersList users={users && users} />
         </div>
 
         <div
-          className={`translate-x-128 duration-1000 opacity-0 transition-all w-9/12 m-0 md:my-4 right-0 absolute ${
-            isCategoryDetails ? "-translate-x-0 opacity-100 relative" : ""
+          className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0  ${
+            isArticleDetails ? 
+            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+          } `}
+        >
+          <ArticlesList categories={categories && categories}/>
+        </div>
+
+
+        <div
+          className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
+            isCategoryDetails ? 
+            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
           } `}
         >
           <CategoryList
@@ -185,16 +198,18 @@ const Dashboard = () => {
         </div>
 
         <div
-          className={`translate-x-128 duration-1000 opacity-0 transition-all w-9/12 m-0 md:my-4 right-0 absolute ${
-            isCategoryEdit ? "-translate-x-0 opacity-100 relative" : ""
+          className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
+            isCategoryEdit ? 
+            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
           } `}
         >
           <EditCategory id={id} name={name} />
         </div>
 
         <div
-          className={`translate-x-128 duration-1000 opacity-0 transition-all w-9/12 m-0 md:my-4 right-0 absolute ${
-            isCategoryAdd ? "-translate-x-0 opacity-100 relative" : ""
+          className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
+            isCategoryAdd ? 
+            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
           } `}
         >
           <AddCategory />
@@ -206,7 +221,32 @@ const Dashboard = () => {
                 setIsUserDetails(true);
                 setIsSideBarOpen(true);
                 setDashboardList(false);
+                setIsArticleDetails(false);
+                setIsCategoryDetails(false);
+                setIsCategoryAdd(false);
+                setIsCategoryEdit(false);
               }}
+
+              IsArticles={() => {
+                setIsArticleDetails(true);
+                setIsSideBarOpen(true);
+                setDashboardList(false);
+                setIsUserDetails(false);
+                setIsCategoryDetails(false);
+                setIsCategoryAdd(false);
+                setIsCategoryEdit(false);
+              }
+              }
+              IsCategory={() => {
+                setIsCategoryDetails(true);
+                setIsSideBarOpen(true);
+                setDashboardList(false);
+                setIsUserDetails(false);
+                setIsArticleDetails(false);
+                setIsCategoryAdd(false);
+                setIsCategoryEdit(false);
+              }
+              }
             />
           </div>
         )}

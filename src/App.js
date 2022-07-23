@@ -23,14 +23,14 @@ function App() {
     <AdminProvider>
       <Navbar />
     <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path='/free' element={<Free />} />
-      <Route path='/about' element={<AboutPage/>}/>
-      <Route path='/category/:id' element={<Filtered />}/>
-      <Route path='/admin' element={<AdminLogin />}/>
-      <Route path='/dashboard' element={<AdminProtect><Dashboard/></AdminProtect>} />
-      <Route path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
-      <Route path='/add-item' element={<AdminProtect><AddItems/></AdminProtect>} />
+      <Route exact path="/" element={<HomePage />} />
+      <Route exact path='/free' element={<Free />} />
+      <Route exact path='/about' element={<AboutPage/>}/>
+      <Route exact path='/category/:id' element={<Filtered />}/>
+      <Route exact path='/admin' element={<AdminLogin />}/>
+      <Route exact path='/dashboard' element={<AdminProtect><Dashboard/></AdminProtect>} />
+      <Route exact path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
+      <Route exact path='/add-item' element={<AdminProtect><AddItems/></AdminProtect>} />
       {/* <Route path='/add-category' element={<AdminProtect><AddCategory/></AdminProtect>} /> */}
       
 
