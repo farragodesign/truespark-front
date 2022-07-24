@@ -13,6 +13,7 @@ export const AdminProvider = (props) => {
             setAdmin(response.data.admin)
         } catch (error) {
             console.log(error)
+            setAdmin(null)
         }
     }
     useEffect(() => {

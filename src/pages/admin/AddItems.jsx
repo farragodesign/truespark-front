@@ -200,8 +200,8 @@ const AddItems = () => {
                    
                     Cover photo
                   </label>
-                  <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
-                    <div className="space-y-1 text-center">
+                  <div className="mt-1 flex  px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                    <div className="space-y-1 text-center flex flex-col justify-center w-1/2">
                       <svg
                         className="mx-auto h-12 w-12 text-gray-400"
                         stroke="currentColor"
@@ -227,7 +227,7 @@ const AddItems = () => {
                             name="file-upload"
                             type="file"
                             className="sr-only"
-                            onChange={(e) => {setImage(e.target.files[0]) ;setImageUrl(URL.createObjectURL(e.target.files[0])) ; console.log(URL.createObjectURL(e.target.files[0]));}}
+                            onChange={(e) => {setImage(e.target.files[0]);setImageUrl(URL.createObjectURL(e.target.files[0]));console.log(URL.createObjectURL(e.target.files[0]));}}
                           />
                         </label>
                         <p className="pl-1">or drag and drop</p>
@@ -236,7 +236,7 @@ const AddItems = () => {
                         PNG, JPG, GIF up to 10MB
                       </p>
                     </div>
-                    <div className="w-1/2  overflow-hidden ">
+                     <div className="w-1/2  overflow-hidden ">
                       <div className="flex items-center justify-center max-w-xs h-full border-2 rounded-lg border-slate-300 border-solid "> 
 
                         {
@@ -255,6 +255,7 @@ const AddItems = () => {
 
                         </div> 
                           </div>
+
                   </div>
                 </div>
               </div>

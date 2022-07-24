@@ -17,6 +17,10 @@ import AddItems from './pages/admin/AddItems';
 // import AddCategory from './pages/admin/AddCategory';
 
 function App() {
+
+
+
+
   return (
     <div>
     <UserProvider>
@@ -28,11 +32,10 @@ function App() {
       <Route exact path='/about' element={<AboutPage/>}/>
       <Route exact path='/category/:id' element={<Filtered />}/>
       <Route exact path='/admin' element={<AdminLogin />}/>
+
       <Route exact path='/dashboard' element={<AdminProtect><Dashboard/></AdminProtect>} />
       <Route exact path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
-      <Route exact path='/add-item' element={<AdminProtect><AddItems/></AdminProtect>} />
-      {/* <Route path='/add-category' element={<AdminProtect><AddCategory/></AdminProtect>} /> */}
-      
+      <Route exact path='/add-item' element={<AdminProtect><AddItems/></AdminProtect>} />      
 
       <Route path='*' element={<Error/>}/>
     </Routes>
