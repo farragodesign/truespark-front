@@ -1,13 +1,9 @@
-import { Badge } from "flowbite-react";
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Comments from "../components/Comments";
+import React from 'react'
 
-function Free() {
+const ArticleDetailed = () => {
   return (
-    <div className="flex flex-wrap">
-      {/* <!-- component --> */}
-      <div className="container w-full md:w-8/12 mt-20 px-4">
+   
+       <div className="container w-full md:w-8/12 mt-20 px-4">
         {/* a image card with full width have a on border options to like and share */}
         <div class="relative flex  shadow-gray-400 border-8 border-white shadow-xl flex-col items-center justify-center w-full rounded-3xl  overflow-hidden">
           <div class="flex flex-col items-center justify-center w-full max-h-96 rounded-3xl  overflow-hidden">
@@ -162,12 +158,7 @@ function Free() {
 
         </div>
       </div>
-      {/* <!-- end component --> */}
-      <div className="w-full md:w-4/12">
-        <Comments />
-      </div>
-    </div>
-  );
+  )
 }
 
-export default Free;
+export default ArticleDetailed

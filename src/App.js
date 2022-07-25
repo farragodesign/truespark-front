@@ -14,6 +14,7 @@ import AdminProtect from './protected/AdminProtect';
 import Dashboard from './pages/admin/Dashboard';
 import EditItems from './pages/admin/EditItems';
 import AddItems from './pages/admin/AddItems';
+import ArticleView from './pages/ArticleView';
 // import AddCategory from './pages/admin/AddCategory';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
       <Route exact path='/about' element={<AboutPage/>}/>
       <Route exact path='/category/:id' element={<Filtered />}/>
       <Route exact path='/admin' element={<AdminLogin />}/>
+      <Route path='/article/:id' element={<ArticleView/>}/>
 
       <Route exact path='/dashboard' element={<AdminProtect><Dashboard/></AdminProtect>} />
       <Route exact path='/:id/edit' element={<AdminProtect><EditItems/></AdminProtect>} />
