@@ -1,9 +1,6 @@
 .active{
   color: #154bfc;
 }
-.flexiblity-option{
-  /* margin-left: 15rem; */
-}
 
 @media screen and (min-width: 350px) {
   .flexiblity-option{

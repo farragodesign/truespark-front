@@ -68,20 +68,15 @@ const Categories = () => {
             )   
         : 
                  
-                 <div className='items-center animate-pulse box-content w-full h-full flex flex-col justify-center bg-slate-100'>
-                    
-                      <div class="animate-pulse h-4 md:h-10 w-28 mb-4 bg-slate-500 rounded my-4 font-anak text-2xl md:text-3xl text-white font-bold text-center"></div>
-                     
-                     <div className='flex flex-wrap w-full'>
-                     { [1, 2, 3, 4].map((item, i) => {
-                            return (
-                                <CardLoading/>
-                            )
-                        }
-                        )
-                    }
-                    </div>
-                  </div>
+        <div className=" w-full flex flex-wrap items-center justify-center md:m-3">
+        { [1, 2, 3, 4 ,5 ,6, 7,8].map((item, i) => {
+            return (
+                <CardLoading/>
+                )
+                }
+                )
+            }
+            </div>
         }
     </div>
   )

@@ -1,15 +1,43 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import Axios from '../Axios'
 
-const ArticleDetailed = () => {
+const ArticleDetailed = ({id}) => {
+
+// get the article by id
+const [article, setArticle] = useState({})
+const [error, setError] = useState('')
+
+// get the articles
+
+  useEffect(() => {
+    Axios.get(`/articles/${id}`)
+      .then((data) => {
+        setArticle(data.data.blog)
+        console.log(data.data.blog);
+        window.scrollTo(0, 0)
+      }
+      )
+      .catch((err) => {
+        setError(err.response.data.error)
+      }
+      )
+  }
+    , [id])
+
+
+
   return (
    
        <div className="container w-full md:w-8/12 mt-20 px-4">
         {/* a image card with full width have a on border options to like and share */}
-        <div class="relative flex  shadow-gray-400 border-8 border-white shadow-xl flex-col items-center justify-center w-full rounded-3xl  overflow-hidden">
-          <div class="flex flex-col items-center justify-center w-full max-h-96 rounded-3xl  overflow-hidden">
+        <div class="relative flex  shadow-gray-400 border-8 border-white shadow-xl flex-col items-center justify-center w-full rounded-lg  overflow-hidden">
+          <div class="flex flex-col items-center justify-center w-full max-h-96 rounded-lg   overflow-hidden">
             <img
               className="w-full object-cover"
-              src="https://res.cloudinary.com/defrflfmj/image/upload/v1658453733/tpbsi5vqfyog7aizduel.jpg"
+              src={
+                article.image
+                  && article.image
+              }
               alt="hai"
             />
           </div>
@@ -18,9 +46,9 @@ const ArticleDetailed = () => {
           <div className="w-full flex flex-col h-fit bg--600 rounded-3xl p-4 pb-8">
             <div className="p-2">
               <h1 className="font-true font-bold text-xl text-center">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nam
-                officiis tenetur facilis aperiam officia, assumenda distinctio
-                optio beatae even
+               {
+                article && article.title
+               }
               </h1>
             </div>
 
@@ -29,7 +57,7 @@ const ArticleDetailed = () => {
             <div className="bg-indigo-200 px-2 rounded-xl">
 
             <span className=" uppercase text-indigo-800 text-sm font-medium  dark:bg-blue-200 dark:text-indigo-800">
-              { "NO category"}
+              { article.category && article.category.name}
             </span>
             </div>
 
@@ -37,77 +65,9 @@ const ArticleDetailed = () => {
 
             <div className="pb-4">
               <p className="font-anak text-justify ">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptas dolore saepe similique voluptatibus, a, cumque ea ut
-                accusamus sunt consequatur omnis iure fugit neque tempora
-                officiis architecto quasi numquam asperiores. Lorem ipsum dolor
-                sit amet consectetur adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Qui quis
-                aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! Lorem ipsum dolor sit
-                amet consectetur <br /> adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Qui quis
-                aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! orem ipsum dolor sit
-                amet consectetur adipisicing elit. Voluptas dolore saepe
-                similique voluptatibus, a, cumque ea ut accusamus sunt
-                consequatur omnis iure fugit neque tempora officiis architecto
-                quasi numquam asperiores. Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Qui quis
-                aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Qui quis
-                aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut!orem ipsum dolor sit amet consectetur
-                adipisicing elit. Voluptas dolore saepe similique voluptatibus,
-                a, cumque ea ut accusamus sunt consequatur omnis iure fugit
-                neque tempora officiis architecto quasi numquam asperiores.
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui
-                quis aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut! Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Qui quis
-                aliquam cum sapiente. Saepe eius fugit nam est minus animi
-                doloremque! Eos earum odio maxime dolores consequuntur.
-                Corporis, esse ut! Lorem ipsum dolor sit amet consectetur
-                adipisicing elit. Qui quis aliquam cum sapiente. Saepe eius
-                fugit nam est minus animi doloremque! Eos earum odio maxime
-                dolores consequuntur. Corporis, esse ut! Lorem ipsum dolor sit
-                amet consectetur adipisicing elit. Qui quis aliquam cum
-                sapiente. Saepe eius fugit nam est minus animi doloremque! Eos
-                earum odio maxime dolores consequuntur. Corporis, esse ut!
+                {
+                  article && article.content
+                }
               </p>
             </div>
           </div>

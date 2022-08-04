@@ -115,7 +115,7 @@ const HomeNavbar = () => {
             {
               categories && categories.map((category, index) => {
                 return (
-                  <li key={category}>
+                  <li key={index}>
               <NavLink to={`/category/${category._id}`} className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">{category.name}</NavLink>
             </li>
                 )
@@ -130,33 +130,33 @@ const HomeNavbar = () => {
       {isOpen ? console.log('isOpen') : console.log('notOpen')}
       {
         
-        <aside class={`translate-x-100   w-48 fixed md:hidden z-50 right-0 top-14 transition-all ${isOpen && 'translate-x-0.5'}`} aria-label="Sidebar">
-          <div class="border shadow-lg overflow-y-auto py-4 px-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
-            <ul class="space-y-2">
+        <aside className={`translate-x-100   w-48 fixed md:hidden z-50 right-0 top-14 transition-all ${isOpen && 'translate-x-0.5'}`} aria-label="Sidebar">
+          <div className="border shadow-lg overflow-y-auto py-4 px-3 bg-gray-50 dark:bg-gray-800 rounded-xl">
+            <ul className="space-y-2">
               <li>
-                <NavLink to='/' class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span class="ml-3 uppercase">Home</span>
+                <NavLink to='/' className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span className="ml-3 uppercase">Home</span>
                 </NavLink>
               </li>
               {
                 admin &&
                 <li>
-                <NavLink to='/dashbord' class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span class="ml-3 uppercase">Dashbord</span>
+                <NavLink to='/dashbord' className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span className="ml-3 uppercase">Dashbord</span>
                 </NavLink>
               </li>
               }
               <li>
-                <NavLink to='/about' class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                  <span class="flex-1 ml-3 whitespace-nowrap uppercase">about</span>
+                <NavLink to='/about' className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <span className="flex-1 ml-3 whitespace-nowrap uppercase">about</span>
                 </NavLink>
               </li>
               {
               categories && categories.map((category, index) => {
                 return (
-                  <li>
-                  <NavLink to={`/category/${category._id}`} class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
-                    <span class="flex-1 ml-3 whitespace-nowrap uppercase">{category.name}</span>
+                  <li  key={index} >
+                  <NavLink to={`/category/${category._id}`} className="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
+                    <span className="flex-1 ml-3 whitespace-nowrap uppercase">{category.name}</span>
                   </NavLink>
                 </li>
                 )
@@ -169,13 +169,13 @@ const HomeNavbar = () => {
                 <div>
                    <div className='w-full border-t-2 border-b-2'>
                   <li>
-                    <span class="flex-1 ml-3 whitespace-nowrap ">{user.name ? user.name : 'user'}</span>
+                    <span className="flex-1 ml-3 whitespace-nowrap ">{user.name ? user.name : 'user'}</span>
                 </li><li>
-                    <span class="flex-1 ml-3 whitespace-nowrap  ">{user.email ? user.email :'user@example.com' }</span>
+                    <span className="flex-1 ml-3 whitespace-nowrap  ">{user.email ? user.email :'user@example.com' }</span>
                 </li>
                 </div>
                 <li className='mt-2'>
-                    <span onClick={logoutHandler} class="flex-1 ml-3 whitespace-nowrap font-bold uppercase">Logout</span>
+                    <span onClick={logoutHandler} className="flex-1 ml-3 whitespace-nowrap font-bold uppercase">Logout</span>
                 </li>
                 </div>
               }

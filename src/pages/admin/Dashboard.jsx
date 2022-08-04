@@ -146,7 +146,7 @@ const Dashboard = () => {
         <div
           className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0  ${
             isUserDetails ? 
-            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+            "-translate-x-0 opacity-100 relative" : "translate-x-full opacity-0 absolute"
           } `}
         >
           <UsersList users={users && users} />
@@ -155,7 +155,7 @@ const Dashboard = () => {
         <div
           className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0  ${
             isArticleDetails ? 
-            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+            "-translate-x-0 opacity-100 relative" : "translate-x-full opacity-0 absolute"
           } `}
         >
           <ArticlesList categories={categories && categories}/>
@@ -165,7 +165,7 @@ const Dashboard = () => {
         <div
           className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
             isCategoryDetails ? 
-            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+            "-translate-x-0 opacity-100 relative" : "translate-x-full opacity-0 absolute"
           } `}
         >
           <CategoryList
@@ -200,7 +200,7 @@ const Dashboard = () => {
         <div
           className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
             isCategoryEdit ? 
-            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+            "-translate-x-0 opacity-100 relative" : "translate-x-full opacity-0 absolute"
           } `}
         >
           <EditCategory id={id} name={name} />
@@ -209,13 +209,13 @@ const Dashboard = () => {
         <div
           className={` duration-1000  transition-all w-9/12 m-0 md:my-4 right-0 ${
             isCategoryAdd ? 
-            "-translate-x-0 opacity-100 relative" : "translate-x-200 opacity-0 absolute"
+            "-translate-x-0 opacity-100 relative" : "translate-x-full opacity-0 absolute"
           } `}
         >
           <AddCategory />
         </div>
         {dashboardList && (
-          <div class="flex w-full m-4 flex-wrap absolute right-0">
+          <div class="flex w-full m-4 flex-wrap justify-center items-center">
             <Cards
               isUser={() => {
                 setIsUserDetails(true);

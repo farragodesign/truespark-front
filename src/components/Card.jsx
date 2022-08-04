@@ -26,7 +26,6 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
     if (user) {
       if (likedBy) {
         likedBy.map((data) => {
-          console.log(`user ${data}`);
           if (data === user._id) {
             setIsLiked(true)
           }
@@ -34,15 +33,13 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
       }
     }
     // getting the category of the article by id
-    // console.log(category);
     Axios.get
       (`/categories/${category ? category : ''}`)
       .then((data) => {
-        console.log(data);
         setIsCategory(data.data.category.name)
       })
       .catch((err) => {
-        console.log(err);
+
       })
   }
     , [likedBy])
@@ -56,13 +53,11 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
       // liking the article and updating the likes
 
       Axios.patch(`/articles/${id}/dislike`, { userId: user._id, jwt: data })
-        .then(() => console.log('disliked'))
-        .catch(() => console.log('error'))
+        
       :
       // disliking the article and updating the likes
       Axios.patch(`/articles/${id}/like`, { userId: user._id, jwt: data })
-        .then(() => console.log('liked'))
-        .catch(() => console.log('error'))
+        
 
     // updating the likes
     setLikes(isLiked ? likes - 1 : likes + 1)
@@ -160,7 +155,7 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
   return (
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
       <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
-      <Link to={'/article/4370'}>
+      <Link to={`/article/${id}`}>
         <img className="h-52 overflow-hidden w-full" src={image} alt="" />
       </Link>
         <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
