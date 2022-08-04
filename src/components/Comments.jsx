@@ -62,7 +62,7 @@ const Comments = ({ id }) => {
         {/* <h3 className="mb-4 text-lg font-semibold text-center text-gray-900">Comments</h3> */}
 
         <div className="space-y-4 h-full  w-full">
-          {comments ? (
+          {comments.length > 0 ? 
             comments.map((comment, index) => {
               return (
                 <div key={index} className="flex">
@@ -90,11 +90,13 @@ const Comments = ({ id }) => {
                 </div>
               );
             })
-          ) : (
+           :  
             <div className="flex w-full h-full items-center justify-center ">
-              <h1>no comments yet</h1>
+              <h1 className="text-stone-800">No comments yet..</h1>
+            
             </div>
-          )}
+
+          }
         </div>
       </div>
       <form

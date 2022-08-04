@@ -53,7 +53,7 @@ function Slider() {
     return (
         <div className='mt-20'>
 
-            <div className="m-2 md:m-5 h-52 sm:h-52 md:h-96 xl:h-128 2xl:h-128 lg:h-128">
+            <div className="m-2 md:m-5 h-52 sm:h-52 md:h-96 xl:h-128 2xl:h-200 lg:h-128">
                 {
                     data ? <Carousel>
                         {

@@ -76,6 +76,7 @@ const AddItems = () => {
           }
           )
           .catch((err) => {
+            console.log(err);
             setIsError(err.message);
             setIsLoading(false);
           }
@@ -186,6 +187,7 @@ const AddItems = () => {
                     autocomplete="country-name"
                     class="mt-1 block w-full overflow-hidden py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
+                    <option>select</option>
                     {
                         categories.map((category,i) => {
                             return <option key={i} value={category._id}>{category.name}</option>

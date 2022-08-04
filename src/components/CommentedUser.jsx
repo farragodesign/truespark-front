@@ -14,7 +14,7 @@ const CommentedUser = ({userName,i}) => {
     Axios.get(`/users/${userName}`)
     .then(res => {
 
-        if(userName === user._id){
+        if(user && userName === user._id){
             console.log("the user is you", user);
             setName({...name,[i]:"you"})
         }else{
