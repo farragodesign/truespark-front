@@ -34,7 +34,9 @@ const RelatedContents = ({categoryId,articleId}) => {
   return (
     <div className='flex flex-col'>
         
-
+    <div>
+        <h2 className='text-xl mt-4 font-bold text-center uppercase'>Related Contents</h2>
+    </div>
 
 
 {

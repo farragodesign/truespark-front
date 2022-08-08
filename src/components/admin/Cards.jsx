@@ -3,7 +3,7 @@ import React from 'react'
 const Cards = ({isUser,IsArticles,IsCategory}) => {
   return (
     <div>
-      <div class="flex flex-wrap justify-center  pb-3 mx-4 md:mx-24 lg:mx-0">
+      <div class="flex flex-wrap justify-center pb-3 mx-4 md:mx-24 lg:mx-0">
    
     <div onClick={isUser} class="w-full p-2 md:w-1/2 cursor-pointer">
       <div

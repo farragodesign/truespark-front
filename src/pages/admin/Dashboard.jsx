@@ -215,7 +215,7 @@ const Dashboard = () => {
           <AddCategory />
         </div>
         {dashboardList && (
-          <div class="flex w-full m-4 flex-wrap justify-center items-center">
+          <div class="flex absolute w-full m-4 flex-wrap justify-center items-center">
             <Cards
               isUser={() => {
                 setIsUserDetails(true);

@@ -11,9 +11,22 @@ const ArticleDetailed = ({article}) => {
   const {admin} = useContext(AdminContext)
 
   const [isCopy, setIsCopy] = useState(false)
-
+  const [time, setTime] = useState('')
   const [isLiked,setIsLiked] = useState(false)
   const [pleaseLogin, setPleaseLogin] = useState('')
+
+  // get the created time of the article
+  const getTime = () => {
+    const date = new Date(article.createdAt)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    const hour = date.getHours()
+    const minute = date.getMinutes()
+    // get am or pm
+    const ampm = hour >= 12 ? 'PM' : 'AM'
+    setTime(`${year}-${month}-${day} ${hour}:${minute} ${ampm}`)
+  }
 
   
   useEffect(() => {
@@ -26,6 +39,8 @@ const ArticleDetailed = ({article}) => {
         })
       }
     }
+
+    getTime()
   }
   , [article.likedBy])
 
@@ -111,7 +126,7 @@ const ArticleDetailed = ({article}) => {
               <div className="flex justify-between items-center w-full h-full">
                 <div>
                   <p className="font-anak pl-4 text-xs md:text-sm">
-                    created at <span className="font-bold">05:08 PM</span>
+                    created at <span className="font-bold"> {time} </span>
                   </p>
                 </div>
                 {/* like svg*/}
