@@ -4,11 +4,13 @@ import { AdminContext } from "../context/AdminContext";
 import { UserContext } from "../context/UserContext";
 import moment from "moment";
 import CommentedUser from "./CommentedUser";
+import ErrorToast from "./ErrorToast";
 
 const Comments = ({ id }) => {
   const [comments, setComments] = useState([]);
   const [text, setText] = useState("");
   const [error, setError] = useState({});
+  const [pleaseLogin, setPleaseLogin] = useState("");
 
   // take the user on the context
   const { user } = useContext(UserContext);
@@ -38,8 +40,11 @@ const Comments = ({ id }) => {
   
 
   const commentSubmitHandler = (e) => {
+
+
     e.preventDefault();
     const jwt = localStorage.getItem("jwt");
+    if(user){
     Axios.post(
       `/comment`,
       { jwt, content: text, createdBy: user._id, article: id },
@@ -53,7 +58,19 @@ const Comments = ({ id }) => {
       .catch((err) => {
         console.log("the error is", err);
         setError(err);
-      });
+      })
+    }
+     else if(admin){
+        setPleaseLogin('admin can\'t Comment') 
+        setTimeout(() => setPleaseLogin(''), 3000) 
+      }
+      else{
+        setPleaseLogin('please login')
+        setTimeout(() => setPleaseLogin(''), 3000)
+      }
+   
+    
+  
   };
 
   return (
@@ -123,6 +140,7 @@ const Comments = ({ id }) => {
           </button>
         </div>
       </form>
+      <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin("")} />
     </div>
   );
 };

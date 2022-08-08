@@ -2,34 +2,29 @@
   color: #154bfc;
 }
 
-@media screen and (min-width: 350px) {
-  .flexiblity-option{
-    margin-left: 4rem;
-  }
+.image-view-post:hover .view-post{
+  opacity:1;
+  animation: alternate-reverse 1s linear 0ms infinite;
 }
 
-@media screen and (min-width: 427px) {
-  .flexiblity-option{
-    margin-left: 10rem;
-  }
-}
-@media screen and (min-width: 508px) {
-  .flexiblity-option{
-    margin-left: 15rem;
-  }
+.image-view-post:hover img{
+  -webkit-filter: brightness(50%);
+    -webkit-transition: all 1s ease;
+    -moz-transition: all 1s ease;
+    -o-transition: all 1s ease;
+    -ms-transition: all 1s ease;
+    transition: all 0.5s ease;
 }
 
+@keyframes alternate-reverse{
+  0%{
+    transform: translateX(6px);
+  }
+  100%{
+    transform: translateX(16px);
 
-@media screen and (min-width: 588px) {
-  .flexiblity-option{
-    margin-left: 20rem;
   }
 }
-
-@media screen and (min-width: 768px) {
-  .flexiblity-option{
-    margin-left: 0rem;
-  }
-}
+ 
 
   

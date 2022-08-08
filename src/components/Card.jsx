@@ -155,8 +155,12 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
   return (
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
       <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
-      <Link to={`/article/${id}`}>
-        <img className="h-52 overflow-hidden w-full" src={image} alt="" />
+      <Link to={`/article/${id}`} className='w-full h-52  flex items-center justify-center'>
+        <div className='image-view-post relative w-full h-52  flex items-center justify-center'>
+
+        <img className="h-52 overflow-hidden w-fulltransition-all" src={image} alt="" />
+        <span className='view-post opacity-0 absolute text-slate-100 font-bold'>{'view post'} <span className='animation-side'>{`->`}</span> </span>
+        </div>
       </Link>
         <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
@@ -204,7 +208,7 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
                 color="indigo"
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `https://truespark.ml/articles/${id}`
+                    `https://truespark.ml/article/${id}`
                   );
                   setIsCopy(true);
                   setTimeout(() => setIsCopy(false), 3000);

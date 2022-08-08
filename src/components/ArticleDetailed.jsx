@@ -1,29 +1,53 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Axios from '../Axios'
+import { UserContext } from '../context/UserContext'
+import ErrorToast from './ErrorToast'
+import SuccessTost from './SuccessTost'
 
-const ArticleDetailed = ({id}) => {
+const ArticleDetailed = ({article}) => {
+
+  const {user} = useContext(UserContext)
+
+  const [isCopy, setIsCopy] = useState(false)
+
+  const [isLiked,setIsLiked] = useState(false)
+  const [pleaseLogin, setPleaseLogin] = useState('')
+
+  
+  useEffect(() => {
+    if (user) {
+      if (article.likedBy) {
+        article.likedBy.map((data) => {
+          if (data === user._id) {
+            setIsLiked(true)
+          }
+        })
+      }
+    }
+  }
+  , [article.likedBy])
+
+  const likeHandler = () => { // liking the article
+    const data = localStorage.getItem('jwt')
+    // checking if user is logged in
+    user ? setIsLiked(!isLiked) : setPleaseLogin('please login')
+    setTimeout(() => setPleaseLogin(''), 3000)
+    isLiked ?
+      // liking the article and updating the likes
+
+      Axios.patch(`/articles/${article._id}/dislike`, { userId: user._id, jwt: data })
+        
+      :
+      // disliking the article and updating the likes
+      Axios.patch(`/articles/${article._id}/like`, { userId: user._id, jwt: data })
+        
+
+    // updating the likes
+    // setLikes(isLiked ? likes - 1 : likes + 1)
+  }
+  
 
 // get the article by id
-const [article, setArticle] = useState({})
-const [error, setError] = useState('')
-
-// get the articles
-
-  useEffect(() => {
-    Axios.get(`/articles/${id}`)
-      .then((data) => {
-        setArticle(data.data.blog)
-        console.log(data.data.blog);
-        window.scrollTo(0, 0)
-      }
-      )
-      .catch((err) => {
-        setError(err.response.data.error)
-      }
-      )
-  }
-    , [id])
-
 
 
   return (
@@ -83,23 +107,48 @@ const [error, setError] = useState('')
                 </div>
                 {/* like svg*/}
                 <div className="flex pr-4 justify-between">
+                  <div onClick={likeHandler}>
+                {
+                  isLiked ?
                   <svg
-                    className="w-6 h-6 mr-4 "
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                    ></path>
-                  </svg>
+                  className="w-6 h-6 mr-4  cursor-pointer"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                :
+                <svg
+                className="w-6 h-6 mr-4 cursor-pointer"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                ></path>
+              </svg>
+                } 
+                </div>
 
                   <svg
-                    className="w-6 h-6"
+                 onClick={() => {
+                  navigator.clipboard.writeText(
+                    `https://truespark.ml/article/${article._id}`
+                  );
+                  setIsCopy(true);
+                  setTimeout(() => setIsCopy(false), 3000);
+                }}
+                    className="w-6 h-6 cursor-pointer"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -117,6 +166,14 @@ const [error, setError] = useState('')
             </div>
 
         </div>
+        <SuccessTost
+          data={"Link copied to clipbord"}
+          isSuccess={isCopy}
+          setSuccess={() => setIsCopy(false)}
+        />
+
+<ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin("")} />
+
       </div>
   )
 }

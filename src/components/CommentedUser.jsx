@@ -6,6 +6,8 @@ const CommentedUser = ({userName,i}) => {
 
     const [name, setName] = useState({})
     const {user} = useContext(UserContext)
+
+    console.log("the all user is", name);
  
 
   useEffect(() => {
@@ -15,17 +17,15 @@ const CommentedUser = ({userName,i}) => {
     .then(res => {
 
         if(user && userName === user._id){
-            console.log("the user is you", user);
             setName({...name,[i]:"you"})
         }else{
-            console.log("the user is", res.data.user);
             setName({...name, [i]: res.data.user.name})
         }
         
     }
     )
     .catch(err => {
-        console.log(err)
+        // console.log(err)
     }
     )
     }
