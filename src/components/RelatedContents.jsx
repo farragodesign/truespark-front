@@ -41,8 +41,18 @@ const RelatedContents = ({categoryId,articleId}) => {
   relatedContents && relatedContents.map((data,i)=>{
     return(
     <div class="flex mt-4 h-36 w-full overflow-hidden items-center bg-white rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-    <Link to={`/article/${data._id}`} className='w-1/2 h-full overflow-hidden bg-rose-400 rounded-t-lg md:rounded-none md:rounded-l-lg'>
-        <img className="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-l-lg" src={data.image} alt="" />
+    <Link to={`/article/${data._id}`} className='w-1/2 h-full overflow-hidden rounded-t-lg md:rounded-none md:rounded-l-lg'>
+    <div className="image-view-post relative w-full h-full flex items-center justify-center">
+            <img
+              className="object-cover w-full h-full rounded-t-lg md:rounded-none md:rounded-l-lg"
+              src={data.image}
+              alt=""
+            />
+            <span className="view-post opacity-0 absolute text-slate-100 font-bold">
+              {"view post"} <span className="animation-side">{`->`}</span>{" "}
+            </span>
+          </div>
+       
         </Link>
 <div class="flex flex-col justify-between p-4 leading-normal w-1/2 h-full">
     <div className='w-full h-3/4'>

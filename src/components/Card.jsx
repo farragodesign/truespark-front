@@ -1,25 +1,24 @@
-import React, { useState, useContext, useEffect } from 'react'
-import { Badge } from 'flowbite-react'
-import { UserContext } from '../context/UserContext'
-import ErrorToast from './ErrorToast'
-import Axios from '../Axios'
-import { AdminContext } from '../context/AdminContext'
-import {Link} from 'react-router-dom'
-import DeleteModal from './DeleteModal'
-import SuccessTost from './SuccessTost'
+import React, { useState, useContext, useEffect } from "react";
+import { Badge } from "flowbite-react";
+import { UserContext } from "../context/UserContext";
+import ErrorToast from "./ErrorToast";
+import Axios from "../Axios";
+import { AdminContext } from "../context/AdminContext";
+import { Link } from "react-router-dom";
+import DeleteModal from "./DeleteModal";
+import SuccessTost from "./SuccessTost";
 
-function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
+function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
   // user context
-  const { user } = useContext(UserContext)
+  const { user } = useContext(UserContext);
   // admin context
-  const { admin } = useContext(AdminContext)
-  const [isLiked, setIsLiked] = useState(false)
-  const [isCopy, setIsCopy] = useState(false)
-  const [pleaseLogin, setPleaseLogin] = useState('')
-  const [iscategory, setIsCategory] = useState('')
-  const [likes, setLikes] = useState(like || 0)
-  const [isDeleteToggle, setIsDeleteToggle] = useState('')
-
+  const { admin } = useContext(AdminContext);
+  const [isLiked, setIsLiked] = useState(false);
+  const [isCopy, setIsCopy] = useState(false);
+  const [pleaseLogin, setPleaseLogin] = useState("");
+  const [iscategory, setIsCategory] = useState("");
+  const [likes, setLikes] = useState(like || 0);
+  const [isDeleteToggle, setIsDeleteToggle] = useState("");
 
   // checking if user is liked the article before rendering
   useEffect(() => {
@@ -27,41 +26,42 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
       if (likedBy) {
         likedBy.map((data) => {
           if (data === user._id) {
-            setIsLiked(true)
+            setIsLiked(true);
           }
-        })
+        });
       }
     }
     // getting the category of the article by id
-    Axios.get
-      (`/categories/${category ? category : ''}`)
+    Axios.get(`/categories/${category ? category : ""}`)
       .then((data) => {
-        setIsCategory(data.data.category.name)
+        setIsCategory(data.data.category.name);
       })
-      .catch((err) => {
+      .catch((err) => {});
+  }, [likedBy]);
 
-      })
-  }
-    , [likedBy])
-
-  const likeHandler = () => { // liking the article
-    const data = localStorage.getItem('jwt')
+  const likeHandler = () => {
+    // liking the article
+    const data = localStorage.getItem("jwt");
     // checking if user is logged in
-    user ? setIsLiked(!isLiked) : setPleaseLogin('please login')
-    setTimeout(() => setPleaseLogin(''), 3000)
-    isLiked ?
-      // liking the article and updating the likes
+    if (user) {
+      setIsLiked(!isLiked);
+    } else if (admin) {
+      setPleaseLogin("Admin can not like");
+      setTimeout(() => setPleaseLogin(""), 3000);
+    } else {
+      setPleaseLogin("please login");
+      setTimeout(() => setPleaseLogin(""), 3000);
+    }
+    isLiked
+      ? // liking the article and updating the likes
 
-      Axios.patch(`/articles/${id}/dislike`, { userId: user._id, jwt: data })
-        
-      :
-      // disliking the article and updating the likes
-      Axios.patch(`/articles/${id}/like`, { userId: user._id, jwt: data })
-        
+        Axios.patch(`/articles/${id}/dislike`, { userId: user._id, jwt: data })
+      : // disliking the article and updating the likes
+        Axios.patch(`/articles/${id}/like`, { userId: user._id, jwt: data });
 
     // updating the likes
-    setLikes(isLiked ? likes - 1 : likes + 1)
-  }
+    setLikes(isLiked ? likes - 1 : likes + 1);
+  };
 
   const notLiked = (like) => {
     return (
@@ -79,8 +79,8 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
           d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
         ></path>
       </svg>
-    )
-  }
+    );
+  };
 
   const liked = (like) => {
     return (
@@ -120,19 +120,22 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
 
   const edit = (edit) => {
     return (
-      <svg 
-      className="w-6 h-6" 
-      fill="none" 
-      stroke="currentColor" 
-      viewBox="0 0 24 24" 
-      xmlns="http://www.w3.org/2000/svg">
-        <path 
-        strokeLinecap="round" 
-        strokeLinejoin="round" 
-        strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+      <svg
+        className="w-6 h-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth={2}
+          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+        />
       </svg>
     );
-  }
+  };
 
   const deleteItem = () => {
     return (
@@ -151,17 +154,25 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
         />
       </svg>
     );
-  }
+  };
   return (
     <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
       <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
-      <Link to={`/article/${id}`} className='w-full h-52  flex items-center justify-center'>
-        <div className='image-view-post relative w-full h-52  flex items-center justify-center'>
-
-        <img className="h-52 overflow-hidden w-fulltransition-all" src={image} alt="" />
-        <span className='view-post opacity-0 absolute text-slate-100 font-bold'>{'view post'} <span className='animation-side'>{`->`}</span> </span>
-        </div>
-      </Link>
+        <Link
+          to={`/article/${id}`}
+          className="w-full h-52  flex items-center justify-center"
+        >
+          <div className="image-view-post relative w-full h-52  flex items-center justify-center">
+            <img
+              className="h-52 overflow-hidden w-fulltransition-all"
+              src={image}
+              alt=""
+            />
+            <span className="view-post opacity-0 absolute text-slate-100 font-bold">
+              {"view post"} <span className="animation-side">{`->`}</span>{" "}
+            </span>
+          </div>
+        </Link>
         <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
         </h5>
@@ -240,4 +251,4 @@ function CardModel({ title, like, likedBy, image, category, id ,setAllData }) {
   );
 }
 
-export default CardModel
+export default CardModel;

@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Axios from '../Axios'
+import { AdminContext } from '../context/AdminContext'
 import { UserContext } from '../context/UserContext'
 import ErrorToast from './ErrorToast'
 import SuccessTost from './SuccessTost'
@@ -7,6 +8,7 @@ import SuccessTost from './SuccessTost'
 const ArticleDetailed = ({article}) => {
 
   const {user} = useContext(UserContext)
+  const {admin} = useContext(AdminContext)
 
   const [isCopy, setIsCopy] = useState(false)
 
@@ -30,8 +32,15 @@ const ArticleDetailed = ({article}) => {
   const likeHandler = () => { // liking the article
     const data = localStorage.getItem('jwt')
     // checking if user is logged in
-    user ? setIsLiked(!isLiked) : setPleaseLogin('please login')
-    setTimeout(() => setPleaseLogin(''), 3000)
+    if (user) {
+      setIsLiked(!isLiked);
+    } else if (admin) {
+      setPleaseLogin("Admin can not like");
+      setTimeout(() => setPleaseLogin(""), 3000);
+    } else {
+      setPleaseLogin("please login");
+      setTimeout(() => setPleaseLogin(""), 3000);
+    }
     isLiked ?
       // liking the article and updating the likes
 

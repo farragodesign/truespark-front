@@ -40,9 +40,8 @@ const Comments = ({ id }) => {
   
 
   const commentSubmitHandler = (e) => {
-
-
     e.preventDefault();
+    const scrollToUp = document.getElementById("scroll-up");
     const jwt = localStorage.getItem("jwt");
     if(user){
     Axios.post(
@@ -52,13 +51,16 @@ const Comments = ({ id }) => {
     )
       .then((data) => {
         console.log("the comment is", data.data.comment);
-        setComments([...comments, data.data.comment]);
+        setComments([ data.data.comment,...comments]);
         setText("");
+        scrollToUp.scrollTop = 0;
       })
       .catch((err) => {
         console.log("the error is", err);
         setError(err);
+        scrollToUp.scrollTop = 0;
       })
+
     }
      else if(admin){
         setPleaseLogin('admin can\'t Comment') 
@@ -75,7 +77,7 @@ const Comments = ({ id }) => {
 
   return (
     <div className="mt-20 relative rounded-lg overflow-hidden shadow-lg shadow-gray-400">
-      <div className="antialiased mb-12 mx-auto h-96 border-4 shadow-lg shadow-gray-400 border-white max-w-screen-sm p-4 rounded-xl  overflow-y-scroll">
+      <div id="scroll-up" className="scroll-smooth antialiased mb-12 mx-auto h-96 border-4 shadow-lg shadow-gray-400 border-white max-w-screen-sm p-4 rounded-xl  overflow-y-scroll">
         {/* <h3 className="mb-4 text-lg font-semibold text-center text-gray-900">Comments</h3> */}
 
         <div className="space-y-4 h-full  w-full">
