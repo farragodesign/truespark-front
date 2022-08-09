@@ -21,7 +21,7 @@ const isLocalhost = Boolean(
   export function register(config) {
     if ('serviceWorker' in navigator) {
       // The URL constructor is available in all browsers that support SW.
-      const publicUrl = new URL('https://truespark.live/', window.location.href);
+      const publicUrl = new URL('https://www.truespark.live/', window.location.href);
       if (publicUrl.origin !== window.location.origin) {
         // Our service worker won't work if PUBLIC_URL is on a different origin
         // from what our page is served on. This might happen if a CDN is used to
@@ -30,7 +30,7 @@ const isLocalhost = Boolean(
       }
   
       window.addEventListener('load', () => {
-        const swUrl = `./service-worker.js`;
+        const swUrl = `https://www.truespark.live/service-worker.js`;
   
         if (isLocalhost) {
 
