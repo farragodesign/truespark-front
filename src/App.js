@@ -26,7 +26,6 @@ function App() {
           <Navbar />
           <Routes>
             <Route exact path="/" element={<HomePage />} />
-            <Route exact path="/free" element={<Free />} />
             <Route exact path="/about" element={<AboutPage />} />
             <Route exact path="/category/:id" element={<Filtered />} />
             <Route exact path="/admin" element={<AdminLogin />} />
@@ -58,6 +57,10 @@ function App() {
                 </AdminProtect>
               }
             />
+
+<Route exact path="/html" element={<AdminProtect>
+                  <Free />
+                </AdminProtect>} />
             <Route path="*" element={<Error />} />
           </Routes>
           <Footer />

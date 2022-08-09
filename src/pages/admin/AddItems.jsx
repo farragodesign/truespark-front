@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Axios from '../../Axios';
 import ErrorToast from '../../components/ErrorToast';
 import Spinner from '../../components/Spinner';
@@ -155,6 +155,7 @@ const AddItems = () => {
                       placeholder="please write your body here .........."
                     ></textarea>
                   </div>
+                  <span className='text-xs'>for customization use <Link to={'/html'}><button className='rounded-md bg-blue-700 p-1 text-white font-anak'>html editor</button></Link> </span>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">

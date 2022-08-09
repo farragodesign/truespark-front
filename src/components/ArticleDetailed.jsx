@@ -69,6 +69,14 @@ const ArticleDetailed = ({article}) => {
     // updating the likes
     // setLikes(isLiked ? likes - 1 : likes + 1)
   }
+
+
+  // var stringToHTML = function (str) {
+  //   var parser = new DOMParser();
+  //   var doc = parser.parseFromString(str, 'text/html');
+  //   console.log('body is ',doc.body);
+  //   return doc.body;
+  // };
   
 
 // get the article by id
@@ -112,9 +120,10 @@ const ArticleDetailed = ({article}) => {
     </div>
 
             <div className="pb-4">
-              <p className="font-anak text-justify ">
+              <p className="font-anak text-justify " dangerouslySetInnerHTML={{ __html: article.content }}
+>
                 {
-                  article && article.content
+                // (article) => { stringToHTML(article && article.content)}
                 }
               </p>
             </div>
