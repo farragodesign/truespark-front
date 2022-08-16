@@ -66,20 +66,10 @@ const ArticleDetailed = ({article}) => {
       Axios.patch(`/articles/${article._id}/like`, { userId: user._id, jwt: data })
         
 
-    // updating the likes
-    // setLikes(isLiked ? likes - 1 : likes + 1)
   }
 
 
-  // var stringToHTML = function (str) {
-  //   var parser = new DOMParser();
-  //   var doc = parser.parseFromString(str, 'text/html');
-  //   console.log('body is ',doc.body);
-  //   return doc.body;
-  // };
-  
 
-// get the article by id
 
 
   return (
@@ -122,9 +112,6 @@ const ArticleDetailed = ({article}) => {
             <div className="pb-4">
               <p className="font-anak text-justify " dangerouslySetInnerHTML={{ __html: article.content }}
 >
-                {
-                // (article) => { stringToHTML(article && article.content)}
-                }
               </p>
             </div>
           </div>

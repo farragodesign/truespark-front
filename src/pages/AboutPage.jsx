@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const AboutPage = () => {
   return (
-    <div className="flex flex-col items-center w-full h-screen ">
+    <div className="flex flex-col items-center w-full h-screen container_here">
       <h1 className="uppercase mt-24 text-blue-700 text-3xl font-anak font-bold text-center">
         About us
       </h1>

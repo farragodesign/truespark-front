@@ -17,7 +17,7 @@ function CreateHtml() {
   }
 
   return (
-    <div className="min-h-screen overflow-scroll w-full mt-20 p-4 ">
+    <div className="min-h-screen overflow-scroll w-full mt-20 p-4 container_here">
     <div className="h-screen w-full flex-wrap lg:flex-nowrap  flex p-4 border border-gray-700 rounded-md">
       <div className="w-full h-full lg:w-1/2 overflow-scroll">
       <Editor
@@ -61,8 +61,7 @@ function CreateHtml() {
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => {
             // go to last visited route
-
-            navigate(-1)
+             navigate(-1)
 
           }}
         >

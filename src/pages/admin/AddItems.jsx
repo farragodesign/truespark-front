@@ -98,7 +98,7 @@ const AddItems = () => {
 
 
   return (
-    <div className="flex w-full h-fit items-center justify-center mt-20">
+    <div className="flex w-full h-fit items-center justify-center mt-20 container_here">
       <div>
         <h1 className="font-bold font-anak text-xl md:text-2xl text-center uppercase text-blue-700">
           Add Article

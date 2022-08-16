@@ -27,7 +27,7 @@ function Filtered() {
     getPosts();
   }, [id]);
   return (
-    <div className="mt-20">
+    <div className="mt-20 container_here">
       {
         category ?
         <h1 className="text-center text-blue-600 text-4xl font-bold font-anak mt-4 uppercase">

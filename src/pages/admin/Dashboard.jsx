@@ -86,7 +86,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="mt-20 flex flex-wrap w-full overflow-x-hidden">
+    <div className="mt-20 flex flex-wrap w-full overflow-x-hidden container_here">
       <div className="w-full md:w-1/3 m-0 md:m-4">
         <DashbordList
           articles={articles.length}

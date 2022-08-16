@@ -68,7 +68,7 @@ const AdminLogin = () => {
     }
     return (
         // the login popup component
-        <div className='w-full h-screen mt-20 flex items-center justify-center'>
+        <div className='w-full h-screen mt-20 flex items-center justify-center container_here'>
 
                     
                    

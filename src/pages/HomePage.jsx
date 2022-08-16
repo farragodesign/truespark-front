@@ -5,10 +5,12 @@ import Slider from '../components/Slider'
 
 function HomePage() {
   return (
-    <div>
+    <div >
         <Slider/>
+        <div className='container_here'>
         <Recent/>
         <Categories/>
+        </div>
     </div>
   )
 }

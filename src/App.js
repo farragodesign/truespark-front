@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import HomePage from "./pages/HomePage";
-import Free from "./pages/free";
+import CreateHtml from "./pages/Html";
 import Navbar from "./components/Navbar";
 import AboutPage from "./pages/AboutPage";
 import { UserProvider } from "./context/UserContext";
@@ -24,6 +24,7 @@ function App() {
         {/* passing admin context to all */}
         <AdminProvider>
           <Navbar />
+          {/* <div className="container_here"> */}
           <Routes>
             <Route exact path="/" element={<HomePage />} />
             <Route exact path="/about" element={<AboutPage />} />
@@ -59,10 +60,11 @@ function App() {
             />
 
 <Route exact path="/html" element={<AdminProtect>
-                  <Free />
+                  <CreateHtml />
                 </AdminProtect>} />
             <Route path="*" element={<Error />} />
           </Routes>
+          {/* </div> */}
           <Footer />
         </AdminProvider>
       </UserProvider>

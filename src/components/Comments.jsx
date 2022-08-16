@@ -76,7 +76,7 @@ const Comments = ({ id }) => {
   };
 
   return (
-    <div className="mt-20 relative rounded-lg overflow-hidden shadow-lg shadow-gray-400">
+    <div className="mt-20 border-t border-slate-400 relative rounded-lg overflow-hidden shadow-lg shadow-gray-400">
       <div id="scroll-up" className="scroll-smooth antialiased mb-12 mx-auto h-96 border-4 shadow-lg shadow-gray-400 border-white max-w-screen-sm p-4 rounded-xl  overflow-y-scroll">
         {/* <h3 className="mb-4 text-lg font-semibold text-center text-gray-900">Comments</h3> */}
 
