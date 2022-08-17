@@ -33,9 +33,9 @@ const ArticleView = () => {
       <Helmet>
         <title>{article.title}</title>
         {/* first 25 letters of article.content */}
-        <meta name="description" content={article.content.substring('0','100')} />
+        <meta name="description" content={article.content && article.content.substring('0','130')} />
         <meta name="keywords" content={article.category && article.category.name} />
-        {/* <link rel="fev" href={`https://www.blog.com/article/${id}`} /> */}
+        <link rel="canonical" href={`https://www.truespark.live/article/${article._id}`} />
       </Helmet>
      <ArticleDetailed article={article}/>
       {/* <!-- end component --> */}
