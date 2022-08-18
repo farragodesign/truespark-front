@@ -5,6 +5,7 @@ import Axios from '../../Axios';
 import ErrorToast from '../../components/ErrorToast';
 import Spinner from '../../components/Spinner';
 import SuccessTost from '../../components/SuccessTost';
+import {Helmet} from 'react-helmet'
 
 const AddItems = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -99,6 +100,13 @@ const AddItems = () => {
 
   return (
     <div className="flex w-full h-fit items-center justify-center mt-20 container_here">
+      <Helmet>
+        <title>Add Items</title>
+        <meta name="description" content="Add Items" />
+        <meta name="keywords" content="Add Items" />
+        <link rel="canonical" href={`https://www.truespark.live/add-items`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div>
         <h1 className="font-bold font-anak text-xl md:text-2xl text-center uppercase text-blue-700">
           Add Article

@@ -89,4 +89,10 @@
 }
 
 
+@media (min-width: 1024px) {
+  .width_20p{
+      width: 24%;
+  }
+}
+
   

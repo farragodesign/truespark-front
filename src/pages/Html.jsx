@@ -5,6 +5,7 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { useState } from "react";
 import {useNavigate} from 'react-router-dom'
+import {Helmet} from 'react-helmet'
 
 function CreateHtml() {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
@@ -18,6 +19,13 @@ function CreateHtml() {
 
   return (
     <div className="min-h-screen overflow-scroll w-full mt-20 p-4 container_here">
+      <Helmet>
+        <title>Create HTML</title>
+        <meta name="description" content="Create HTML" />
+        <meta name="keywords" content="Create HTML" />
+        <link rel="canonical" href="https://www.truespark.live/html" />
+        <meta name="robots" content="noindex" />
+      </Helmet>
     <div className="h-screen w-full flex-wrap lg:flex-nowrap  flex p-4 border border-gray-700 rounded-md">
       <div className="w-full h-full lg:w-1/2 overflow-scroll">
       <Editor

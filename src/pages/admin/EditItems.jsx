@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet";
 import { Link, useParams } from "react-router-dom";
 import Axios from "../../Axios";
 import ErrorToast from "../../components/ErrorToast";
@@ -112,6 +113,13 @@ const EditItems = () => {
 
   return (
     <div className="flex w-full h-fit items-center justify-center mt-20 container_here">
+      <Helmet>
+        <title>Edit Items</title>
+        <meta name="description" content="Edit Items" />
+        <meta name="keywords" content="Edit Items" />
+        <link rel="canonical" href={`https://www.truespark.live/Edit-items`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <div>
         <h1 className="font-bold font-anak text-xl md:text-2xl text-center uppercase text-blue-700">
           Edit Article

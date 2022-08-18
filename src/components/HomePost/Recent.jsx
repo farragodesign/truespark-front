@@ -17,7 +17,7 @@ function Recent() {
         <div>
             <h1 className='text-blue-800 uppercase font-bold text-2xl  font-anak ml-7 md:ml-5 text-center'>Recent Posts</h1>
             <div className="flex flex-wrap justify-center">
-                <div className=' w-full flex flex-wrap items-center justify-center md:m-3'>
+                <div className=' w-full flex flex-wrap items-center justify-center md:justify-between md:m-3'>
                     {
                         data ? data.map((item, i) => {
                             return (

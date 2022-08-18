@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import Axios from "../Axios";
 import CardLoading from "../components/CardLoading";
+import { Helmet } from "react-helmet";
 
 function Filtered() {
   const { id } = useParams();
@@ -28,6 +29,15 @@ function Filtered() {
   }, [id]);
   return (
     <div className="mt-20 container_here">
+      <Helmet>
+        <title>{`True Spark | ${category && category.name}`}</title>
+        <meta name="description" 
+          content="True Spark, True Spark platform, True Spark platform for students, True Spark platform for students to share their knowledge and ideas"
+          />
+        <meta name="keywords" content={category && category.name} />
+        <meta name="robots" content="index, follow" />
+        <link rel="canonical" href={`https://www.truespark.live/category/${category && category._id}`} />
+      </Helmet>
       {
         category ?
         <h1 className="text-center text-blue-600 text-4xl font-bold font-anak mt-4 uppercase">
@@ -40,7 +50,7 @@ function Filtered() {
 </div>
       }
             <div className="flex w-full flex-wrap justify-center">
-      <div className=" w-full flex flex-wrap items-center justify-center md:m-3">
+      <div className=" w-full flex flex-wrap items-center justify-center md:justify-between md:m-3">
         {
             posts ?
             posts.map((post, index) => {

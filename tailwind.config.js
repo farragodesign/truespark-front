@@ -46,7 +46,9 @@ module.exports = {
 		},
     fontFamily:{
       'true' :['Manjari','Roboto', 'sans-serif'],
-      'anak' :['Anek Malayalam', 'sans-serif']
+      'anak' :['Anek Malayalam', 'sans-serif'],
+	  'sans-Arabic' :['Noto Sans Arabic', 'sans-serif'],
+	  'ml-Read' :['JetBrains Mono', 'monospace'],
     }
   },
   plugins: [

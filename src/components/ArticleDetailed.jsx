@@ -87,7 +87,7 @@ const ArticleDetailed = ({article}) => {
 
         <div className="w-full flex flex-col h-fit bg--600 rounded-3xl p-4 pb-8">
           <div className="p-2">
-            <h1 className="font-true font-bold text-xl text-center" lang="">
+            <h1 className="font-anak font-bold text-xl text-center" lang="">
               {article && article.title}
             </h1>
           </div>
@@ -118,7 +118,17 @@ const ArticleDetailed = ({article}) => {
             }
           >
             <p
-              className="font-anak text-justify "
+              className={`${ /^[a-zA-Z]+$/.test(article.content)
+              ? "font-anak"
+              : /[\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D66-\u0D6F]/.test(
+                  article.content
+                )
+              ? "font-ml-Read"
+              : /[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]/.test(
+                  article.content
+                )
+              ? "font-sans-Arabic"
+              : "font-anak"} text-justify `}
               dangerouslySetInnerHTML={{ __html: article.content }}
             ></p>
           </div>

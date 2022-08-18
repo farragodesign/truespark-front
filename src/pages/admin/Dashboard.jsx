@@ -8,6 +8,7 @@ import DashbordList from "../../components/admin/DashbordList";
 import EditCategory from "../../components/admin/EditCategory";
 import ListSideBar from "../../components/admin/ListSideBar";
 import UsersList from "../../components/admin/UsersList";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
   const [articles, setArticles] = useState([]);
@@ -87,6 +88,11 @@ const Dashboard = () => {
 
   return (
     <div className="mt-20 flex flex-wrap w-full overflow-x-hidden container_here">
+       <title>Dashboard</title>
+        <meta name="description" content="Dashboard" />
+        <meta name="keywords" content="Dashboard" />
+        <link rel="canonical" href={`https://www.truespark.live/dashbord`} />
+        <meta name="robots" content="noindex" />
       <div className="w-full md:w-1/3 m-0 md:m-4">
         <DashbordList
           articles={articles.length}

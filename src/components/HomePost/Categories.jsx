@@ -26,7 +26,7 @@ const Categories = () => {
                     <div key={index}>
                         <h1 className={`uppercase text-blue-800 font-bold text-3xl my-4 font-anak text-center`}>{category.name}</h1>
                         <div className="flex flex-wrap justify-center">
-                        <div className=' w-full flex flex-wrap items-center justify-center md:m-3'>
+                        <div className=' w-full flex flex-wrap items-center justify-center md:justify-between md:m-3'>
                             {
                                 articles ?
                              articles.filter((article)=>{

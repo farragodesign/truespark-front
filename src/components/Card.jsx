@@ -156,15 +156,15 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
     );
   };
   return (
-    <div className=" md:m-0 w-11/12 md:w-1/2 lg:w-1/4">
-      <div className=" h-100 mt-4  overflow-hidden transition-all rounded-lg  shadow-lg shadow-slate-300 m-2 hover:scale-105">
+    <div className=" md:m-0 w-9/12 md:w-1/2 lg:w-2/12 width_20p">
+      <div className=" h-72 mt-4  overflow-hidden transition-all rounded-md  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <Link
           to={`/article/${id}`}
-          className="w-full h-52  flex items-center justify-center"
+          className="w-full h-40  flex items-center justify-center"
         >
           <div className="image-view-post relative w-full h-52  flex items-center justify-center">
             <img
-              className="h-52 overflow-hidden w-fulltransition-all"
+              className="h-40 overflow-hidden w-fulltransition-all"
               src={image}
               alt=""
             />
@@ -176,7 +176,7 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
         <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
           {title && title}
         </h5>
-        <div className="flex flex-auto flex-wrap justify-around">
+        <div className="flex h-10 flex-auto flex-wrap justify-around">
           <Link
             className="cursor-pointer bg-indigo-100 px-2.5 py-0.5 flex rounded-2xl justify-center items-center "
             to={`/category/${category}`}

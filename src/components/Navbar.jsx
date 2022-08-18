@@ -101,12 +101,12 @@ const HomeNavbar = () => {
           </div>
           <ul className="hidden md:flex flex-row space-x-8 mt-0 text-sm font-medium">
             <li>
-              <NavLink to="/" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Home</NavLink>
+              <NavLink to="/" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Home</NavLink>
             </li>
             {
                 admin &&
                 <li>
-                <NavLink to="/dashboard" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white" aria-current="page">Dashboard</NavLink>
+                <NavLink to="/dashboard" className="md:block py-2 pr-4 pl-3 uppercase hidden font-bold rounded md:bg-transparent text-gray-700 md:p-0 dark:text-white md:hover:bg-transparent md:border-0 md:hover:text-blue-700  md:dark:hover:text-white  dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page">Dashboard</NavLink>
               </li>
               }
             <li>

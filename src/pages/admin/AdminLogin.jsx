@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Spinner from '../../components/Spinner'
 import Axios from '../../Axios'
 import { AdminContext } from '../../context/AdminContext'
+import { Helmet } from 'react-helmet'
 
 const AdminLogin = () => {
     const navigate = useNavigate()
@@ -70,7 +71,13 @@ const AdminLogin = () => {
         // the login popup component
         <div className='w-full h-screen mt-20 flex items-center justify-center container_here'>
 
-                    
+<Helmet>
+        <title>Admin Login</title>
+        <meta name="description" content="Admin Login" />
+        <meta name="keywords" content="Admin Login" />
+        <link rel="canonical" href={`https://www.truespark.live/admin`} />
+        <meta name="robots" content="noindex" />
+      </Helmet>
                    
 
                 <div className={`overflow-hidden -translate-y-100 opacity-0  absolute p-4 w-11/12 md:w-1/2 lg:w-1/3 mx-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 transition-all duration-1000 ${animate && 'translate-y-0 opacity-100'}`}>
