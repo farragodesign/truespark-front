@@ -45,10 +45,11 @@ module.exports = {
 			stone: colors.stone,
 		},
     fontFamily:{
-      'true' :['Manjari','Roboto', 'sans-serif'],
-      'anak' :['Anek Malayalam', 'sans-serif'],
-	  'sans-Arabic' :['Noto Sans Arabic', 'sans-serif'],
-	  'ml-Read' :['JetBrains Mono', 'monospace'],
+      'true' :['Noto Serif Malayalam','Roboto', 'sans-serif'],
+      'anak' :['Cairo', 'sans-serif'],
+	  'sans-Arabic' :['Cairo', 'sans-serif'],
+	  'ml-Read' :['Noto Serif Malayalam', 'serif'],
+	  'poppins' :['Poppins', 'sans-serif'],
     }
   },
   plugins: [

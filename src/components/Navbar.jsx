@@ -82,10 +82,10 @@ const HomeNavbar = () => {
 
       <nav className="bg-slate-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray- fixed z-100 w-full m-0 top-0">
         <div className="container flex justify-between flex-wrap w-full items-center mx-auto ">
-          <NavLink to="/" className="flex items-center">
-            <img src="/logo.svg" className="mr-3 h-6 sm:h-9" alt="Logo" />
-            <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Truespark</span>
-          </NavLink>
+          <Link to="/" className="flex items-center">
+            {/* <img src="/logo.svg" className="mr-3 h-6 sm:h-9" alt="Logo" /> */}
+            <span className="font-poppins self-center text-2xl text-slate-900 whitespace-nowrap dark:text-white">true<span className='font-bold'>spark</span></span>
+          </Link>
           <div className="flex md:order-2  w-auto justify-end">
            { user ? <DropdownMenu user={user} logoutHandler={logoutHandler}/> 
            : admin ?

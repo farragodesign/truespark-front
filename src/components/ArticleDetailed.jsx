@@ -1,52 +1,49 @@
-import React, { useContext, useEffect, useState } from 'react'
-import Axios from '../Axios'
-import { AdminContext } from '../context/AdminContext'
-import { UserContext } from '../context/UserContext'
-import ErrorToast from './ErrorToast'
-import SuccessTost from './SuccessTost'
+import React, { useContext, useEffect, useState } from "react";
+import Axios from "../Axios";
+import { AdminContext } from "../context/AdminContext";
+import { UserContext } from "../context/UserContext";
+import ErrorToast from "./ErrorToast";
+import SuccessTost from "./SuccessTost";
 
+const ArticleDetailed = ({ article }) => {
+  const { user } = useContext(UserContext);
+  const { admin } = useContext(AdminContext);
 
-const ArticleDetailed = ({article}) => {
-
-  const {user} = useContext(UserContext)
-  const {admin} = useContext(AdminContext)
-
-  const [isCopy, setIsCopy] = useState(false)
-  const [time, setTime] = useState('')
-  const [isLiked,setIsLiked] = useState(false)
-  const [pleaseLogin, setPleaseLogin] = useState('')
+  const [isCopy, setIsCopy] = useState(false);
+  const [time, setTime] = useState("");
+  const [isLiked, setIsLiked] = useState(false);
+  const [pleaseLogin, setPleaseLogin] = useState("");
 
   // get the created time of the article
   const getTime = () => {
-    const date = new Date(article.createdAt)
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    const hour = date.getHours()
-    const minute = date.getMinutes()
+    const date = new Date(article.createdAt);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+    const hour = date.getHours();
+    const minute = date.getMinutes();
     // get am or pm
-    const ampm = hour >= 12 ? 'PM' : 'AM'
-    setTime(`${year}-${month}-${day} ${hour}:${minute} ${ampm}`)
-  }
+    const ampm = hour >= 12 ? "PM" : "AM";
+    setTime(`${year}-${month}-${day} ${hour}:${minute} ${ampm}`);
+  };
 
-  
   useEffect(() => {
     if (user) {
       if (article.likedBy) {
         article.likedBy.map((data) => {
           if (data === user._id) {
-            setIsLiked(true)
+            setIsLiked(true);
           }
-        })
+        });
       }
     }
 
-    getTime()
-  }
-  , [article.likedBy])
+    getTime();
+  }, [article.likedBy]);
 
-  const likeHandler = () => { // liking the article
-    const data = localStorage.getItem('jwt')
+  const likeHandler = () => {
+    // liking the article
+    const data = localStorage.getItem("jwt");
     // checking if user is logged in
     if (user) {
       setIsLiked(!isLiked);
@@ -57,32 +54,49 @@ const ArticleDetailed = ({article}) => {
       setPleaseLogin("please login");
       setTimeout(() => setPleaseLogin(""), 3000);
     }
-    isLiked ?
-      // liking the article and updating the likes
+    isLiked
+      ? // liking the article and updating the likes
 
-      Axios.patch(`/articles/${article._id}/dislike`, { userId: user._id, jwt: data })
-        
-      :
-      // disliking the article and updating the likes
-      Axios.patch(`/articles/${article._id}/like`, { userId: user._id, jwt: data })
-        
-
-  }
-
-
-
-
+        Axios.patch(`/articles/${article._id}/dislike`, {
+          userId: user._id,
+          jwt: data,
+        })
+      : // disliking the article and updating the likes
+        Axios.patch(`/articles/${article._id}/like`, {
+          userId: user._id,
+          jwt: data,
+        });
+  };
 
   return (
     <div className="container w-full md:w-8/12 mt-20 px-4">
       {/* a image card with full width have a on border options to like and share */}
       <div class="relative flex  shadow-gray-400 border-8 border-white shadow-xl flex-col items-center justify-center w-full rounded-lg  overflow-hidden">
         <div class="flex flex-col items-center justify-center w-full max-h-96 rounded-lg   overflow-hidden">
-          <img
-            className="w-full object-cover"
-            src={article.image && article.image}
-            alt="hai"
-          />
+          {article.image ? (
+            <img
+              className="w-full object-cover"
+              src={article.image && article.image}
+              alt="hai"
+            />
+          ) : (
+            <div className="h-52 w-full flex justify-center items-center">
+              <svg
+                class="w-28 h-20 text-slate-500 animate-pulse"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path>
+              </svg>
+            </div>
+          )}
         </div>
 
         <div className="w-full flex flex-col h-fit bg--600 rounded-3xl p-4 pb-8">
@@ -118,17 +132,19 @@ const ArticleDetailed = ({article}) => {
             }
           >
             <p
-              className={`${ /^[a-zA-Z]+$/.test(article.content)
-              ? "font-anak"
-              : /[\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D66-\u0D6F]/.test(
-                  article.content
-                )
-              ? "font-ml-Read"
-              : /[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]/.test(
-                  article.content
-                )
-              ? "font-sans-Arabic"
-              : "font-anak"} text-justify `}
+              className={`${
+                /^[a-zA-Z]+$/.test(article.content)
+                  ? "font-anak"
+                  : /[\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D66-\u0D6F]/.test(
+                      article.content
+                    )
+                  ? "font-ml-Read"
+                  : /[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]/.test(
+                      article.content
+                    )
+                  ? "font-sans-Arabic"
+                  : "font-anak"
+              } text-justify `}
               dangerouslySetInnerHTML={{ __html: article.content }}
             ></p>
           </div>
@@ -210,6 +226,6 @@ const ArticleDetailed = ({article}) => {
       <ErrorToast event={pleaseLogin} onClick={() => setPleaseLogin("")} />
     </div>
   );
-}
+};
 
-export default ArticleDetailed
+export default ArticleDetailed;

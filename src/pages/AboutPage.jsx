@@ -1,5 +1,4 @@
 import React from "react";
-import { a } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 const AboutPage = () => {
@@ -9,11 +8,16 @@ const AboutPage = () => {
         <title>True Spark | About</title>
         <meta
           name="description"
-          content="True Spark is a platform for students to share their knowledge and ideas"
+          content="TrueSpark is a fact-spitting organization formed by a group of students targeting to uncover the truths and
+          facts in history and current political scenario, which has been interrupted by lies and deviated from its original
+          form. The organization aims in bringing the minority rights denial into the lime-light along with unfolding true
+          face of some historical events which is misread all over. The organization completely holds an unbiased stance in
+          expressing it's views, and upholds a fact-checking method on historical approach."
         />
         <meta
           name="keywords"
-          content="True Spark, True Spark platform, True Spark platform for students, True Spark platform for students to share their knowledge and ideas"
+          content="Treuspark , True Spark , Truespark live , true spark live ,website of truespark, 
+          darul huda , thelicham ,True Spark platform"
         />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://www.truespark.live/about" />
@@ -23,20 +27,18 @@ const AboutPage = () => {
       </h1>
       <div className="w-11/12 md:w-5/12 mt-8 md:mt-12 h-12  text-justify font-anak text-lg">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi iusto
-          delectus laboriosam aspernatur quas earum perspiciatis libero dolore
-          unde, suscipit reiciendis dignissimos corrupti nisi repellendus a odio
-          iste aut illo? Lorem ipsum dolor, sit amet consectetur adipisicing
-          elit. Amet necessitatibus numquam temporibus possimus eveniet officia
-          facere corporis molestias saepe dolor. Expedita animi possimus
-          consectetur libero illo natus reiciendis ratione aperiam. Lorem ipsum
-          dolor sit, amet consectetur adipisicing elit. Fuga quos velit cum
-          libero quo itaque optio ipsa quidem voluptatum totam cupiditate
-          consequuntur, sunt molestiae ad corporis delectus magnam,
-          necessitatibus illo?
+          TrueSpark is a fact-spitting organization formed by a group of
+          students targeting to uncover the truths and facts in history and
+          current political scenario, which has been interrupted by lies and
+          deviated from its original form. The organization aims in bringing the
+          minority rights denial into the lime-light along with unfolding true
+          face of some historical events which is misread all over. The
+          organization completely holds an unbiased stance in expressing it's
+          views, and upholds a fact-checking method on historical approach.
         </p>
-        <div className="flex justify-center">
-          <a href={"https://www.facebook.com/truespark.fb"} target="_blank">
+        <div className="flex justify-center mt-4">
+          <a href={"https://www.facebook.com/truespark.fb"} target="_blank"
+          rel="noreferrer">
             <svg
               fill="currentColor"
               viewBox="0 0 24 24"
@@ -51,6 +53,7 @@ const AboutPage = () => {
           <a
             href={"https://www.youtube.com/channel/UCGzVSOONYEwQCH2-A9x6NwQ"}
             target="_blank"
+            rel="noreferrer"
           >
             <svg
               viewBox="0 0 24 24"
@@ -63,7 +66,8 @@ const AboutPage = () => {
             </svg>
           </a>
 
-          <a href={"https://www.instagram.com/truespark_ig/"} target="_blank">
+          <a href={"https://www.instagram.com/truespark_ig/"} target="_blank"
+          rel="noreferrer">
             <svg
               viewBox="0 0 24 24"
               fill="currentColor"
@@ -76,7 +80,8 @@ const AboutPage = () => {
             </svg>
           </a>
 
-          <a href={"/"} target="_blank">
+          <a href={"/"} target="_blank"
+          rel="noreferrer">
             <svg
               viewBox="0 0 1024 1024"
               fill="currentColor"
@@ -87,7 +92,8 @@ const AboutPage = () => {
               <path d="M928 254.3c-30.6 13.2-63.9 22.7-98.2 26.4a170.1 170.1 0 0075-94 336.64 336.64 0 01-108.2 41.2A170.1 170.1 0 00672 174c-94.5 0-170.5 76.6-170.5 170.6 0 13.2 1.6 26.4 4.2 39.1-141.5-7.4-267.7-75-351.6-178.5a169.32 169.32 0 00-23.2 86.1c0 59.2 30.1 111.4 76 142.1a172 172 0 01-77.1-21.7v2.1c0 82.9 58.6 151.6 136.7 167.4a180.6 180.6 0 01-44.9 5.8c-11.1 0-21.6-1.1-32.2-2.6C211 652 273.9 701.1 348.8 702.7c-58.6 45.9-132 72.9-211.7 72.9-14.3 0-27.5-.5-41.2-2.1C171.5 822 261.2 850 357.8 850 671.4 850 843 590.2 843 364.7c0-7.4 0-14.8-.5-22.2 33.2-24.3 62.3-54.4 85.5-88.2z" />
             </svg>
           </a>
-          <a href={"https://www.truespark.live"} target="_blank">
+          <a href={"https://www.truespark.live"} target="_blank"
+          rel="noreferrer">
             <svg
               className="w-6 h-6 mx-2 my-2 hover:text-blue-700 cursor-pointer md:w-8 md:h-8 transition-all"
               fill="currentColor"

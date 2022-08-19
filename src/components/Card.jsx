@@ -156,7 +156,7 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
     );
   };
   return (
-    <div className=" md:m-0 w-9/12 md:w-1/2 lg:w-2/12 width_20p">
+    <div className=" md:m-0 w-72 ">
       <div className=" h-72 mt-4  overflow-hidden transition-all rounded-md  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <Link
           to={`/article/${id}`}
@@ -173,8 +173,19 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
             </span>
           </div>
         </Link>
-        <h5 className="text-center w-full h-20 flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title && title}
+        <h5 className={`text-center w-full h-20 
+        ${
+          
+             /^[a-zA-Z]+$/.test(title)
+              ? "font-anak"
+              : /[\u0D02\u0D03\u0D05-\u0D0C\u0D0E-\u0D10\u0D12-\u0D28\u0D2A-\u0D39\u0D3E-\u0D43\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D60\u0D61\u0D66-\u0D6F]/.test(title)
+              ? "font-ml-Read"
+              : /[\u0600-\u06ff]|[\u0750-\u077f]|[\ufb50-\ufc3f]|[\ufe70-\ufefc]/.test(title)
+              ? "font-sans-Arabic"
+              : "font-anak" } 
+        
+        flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white`}>
+        {title}
         </h5>
         <div className="flex h-10 flex-auto flex-wrap justify-around">
           <Link

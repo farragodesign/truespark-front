@@ -62,7 +62,7 @@ function Slider() {
                                 return (
                                     <div key={i} className='bg-gradient-to-r from-purple-500 to-pink-500 box-content bg-cover w-full h-full bg-center bg-no-repeat bg-origin-padding  flex justify-center' style={{ backgroundImage: `url(${item.image})` }}>
                                     <div class={`py-1 px-2 bg-indigo-100 text-indigo-700 rounded absolute top-5 md:top-10 font-anak text-sm md:text-lg font-bold text-center uppercase`}>{category ? category : 'Loading..'}</div>
-                                    <div className="bg-indigo-700 w-fit h-fit absolute bottom-10 rounded-md p-2">
+                                    <div className="bg-blue-900 w-fit h-fit absolute bottom-10 rounded-md p-2">
                                         <Link to={`/article/${item._id}`}>
                                     <h1 className='font-anak text-lg md:text-3xl text-white font-bold text-center capitalize'>{item.title}</h1>
                                         </Link>
