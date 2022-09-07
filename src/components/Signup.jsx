@@ -67,7 +67,7 @@ const Signup = ({onClick , isLogin , onSignup}) => {
     useEffect(() => {
         function start() {
           gapi.client.init({
-            clientId: '691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com',
+            clientId: '691779687682-ia60o5pkjnroqpgi2nc5sj85dtnbdeuh.apps.googleusercontent.com',
             scope: 'email',
           });
         }
@@ -127,7 +127,7 @@ const Signup = ({onClick , isLogin , onSignup}) => {
            <div className='flex w-full justify-center'>
           <GoogleLogin
             clientId={
-              "691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com"
+              "691779687682-ia60o5pkjnroqpgi2nc5sj85dtnbdeuh.apps.googleusercontent.com"
             }
             buttonText="Log in with Google"
             // costumebtn

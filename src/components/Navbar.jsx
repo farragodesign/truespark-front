@@ -66,7 +66,7 @@ const HomeNavbar = () => {
 
      const initializeGsi = () => {
         window.google.accounts.id.initialize({
-            client_id: '691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com',
+            client_id: '691779687682-ia60o5pkjnroqpgi2nc5sj85dtnbdeuh.apps.googleusercontent.com',
             callback: onOneTapSignedIn
         });
         window.google.accounts.id.prompt(notification => {
