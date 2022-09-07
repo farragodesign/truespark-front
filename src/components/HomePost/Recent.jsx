@@ -4,6 +4,8 @@ import CardModel from '../Card'
 import Axios from '../../Axios';
 import axios from 'axios';
 import CardLoading from '../CardLoading';
+import Aos from 'aos';
+import 'aos/dist/aos.css';
 
 function Recent() {
     const [data, setData] = useState(null);
@@ -12,10 +14,16 @@ function Recent() {
             console.log(res.data);
             setData(res.data.blogs);
         });
+
+        // initilizing aos
+        Aos.init({
+            duration: 1000,
+        });
+
     }, []);
     return (
         <div>
-            <h1 className='text-blue-800 uppercase font-bold text-2xl  font-anak ml-7 md:ml-5 text-center'>Recent Posts</h1>
+            <h1 className='text-blue-800 uppercase font-bold text-2xl  font-anak ml-7 md:ml-5 text-center' data-aos="fade-up"  data-aos-anchor-placement="center-bottom">Recent Posts</h1>
             <div className="flex flex-wrap justify-center">
                 <div className=' w-full flex flex-wrap items-center justify-center md:justify-between md:m-3'>
                     {

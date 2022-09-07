@@ -7,6 +7,9 @@ import { AdminContext } from "../context/AdminContext";
 import { Link } from "react-router-dom";
 import DeleteModal from "./DeleteModal";
 import SuccessTost from "./SuccessTost";
+import Aos from "aos";
+import 'aos/dist/aos.css';
+
 
 function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
   // user context
@@ -31,6 +34,15 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
         });
       }
     }
+
+    // initilizing aos
+    Aos.init({
+      duration: 1000,
+    });
+
+    // Aos.refresh();
+
+
     // getting the category of the article by id
     Axios.get(`/categories/${category ? category : ""}`)
       .then((data) => {
@@ -156,7 +168,7 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
     );
   };
   return (
-    <div className=" md:m-0 w-72 ">
+    <div className=" md:m-0 w-72 " data-aos="fade-up"  >
       <div className=" h-72 mt-4  overflow-hidden transition-all rounded-md  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <Link
           to={`/article/${id}`}
@@ -184,7 +196,7 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
               ? "font-sans-Arabic"
               : "font-anak" } 
         
-        flex capitalize items-center justify-center text-xl font-bold tracking-tight text-gray-900 dark:text-white`}>
+        flex capitalize items-center justify-center text-md font-bold tracking-tight text-gray-900 dark:text-white`}>
         {title}
         </h5>
         <div className="flex h-10 flex-auto flex-wrap justify-around">

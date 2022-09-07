@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import { useGoogleOneTapLogin } from 'react-google-one-tap-login';
 import "./App.css";
 import HomePage from "./pages/HomePage";
 import CreateHtml from "./pages/Html";
@@ -15,8 +16,38 @@ import Dashboard from "./pages/admin/Dashboard";
 import EditItems from "./pages/admin/EditItems";
 import AddItems from "./pages/admin/AddItems";
 import ArticleView from "./pages/ArticleView";
+import Axios from "./Axios";
+import { useEffect } from "react";
 
 function App() {
+// useEffect(() => {
+  // useGoogleOneTapLogin({
+  //   onSuccess: (response) => {
+  //     Axios.post("users/loginwithgoogle", {
+  //       name: response.name,
+  //       email: response.email,
+  //     })
+  //       .then((res) => {
+  //         console.log(res);
+  //         localStorage.setItem("jwt", res.data.token);
+  //         // localStorage.setItem("user", JSON.stringify(res.data.user));
+  //         window.location.href = "/about";
+  //       }
+  //       )
+  //       .catch((err) => {
+  //         console.log(err);
+  //       }
+  //       );
+
+  //   },
+  //   onError: (error) => console.log(error),
+  //   googleAccountConfigs: {
+  //     client_id:
+  //       '691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com',
+  //   },
+  // });
+// }, []);
+
   return (
     <div>
       {/* passing user context to all */}

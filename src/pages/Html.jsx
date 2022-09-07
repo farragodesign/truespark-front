@@ -17,6 +17,9 @@ function CreateHtml() {
     alert("HTML Code Copied to clipboard");
   }
 
+  
+
+
   return (
     <div className="min-h-screen overflow-scroll w-full mt-20 p-4 container_here">
       <Helmet>
@@ -26,12 +29,12 @@ function CreateHtml() {
         <link rel="canonical" href="https://www.truespark.live/html" />
         <meta name="robots" content="noindex" />
       </Helmet>
-    <div className="h-screen w-full flex-wrap lg:flex-nowrap  flex p-4 border border-gray-700 rounded-md">
-      <div className="w-full h-full lg:w-1/2 overflow-scroll">
+    <div className="h-screen w-full flex-wrap lg:flex-nowrap   p-4 border border-gray-700 rounded-md">
+      <div className="w-full h-full">
       <Editor
         editorState={editorState}
         onEditorStateChange={setEditorState}
-        toolbarClassName="toolbarClassName"
+        toolbarClassName="container_toolbar"
         wrapperClassName="wrapperClassName"
         editorClassName="editorClassName"
         placeholder="Enter your content here"
@@ -41,22 +44,29 @@ function CreateHtml() {
           borderRadius: "0.5rem",
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
           padding: "0.5rem",
+          // position: "absolute",
+          // zIndex: "10",
+          // left:"0",
+          // right:"0",
+          // top:'0'
         }}
         editorStyle={{
           border: "1px solid #ddd",
+          borderBottomColor: "black",
           borderRadius: "0.5rem",
           padding: "0.5rem",
-          minHeight: "20rem",
           overflow: "scroll",
+          height: "100%",
+          // paddingTop: "var(--particular-ad) " 
+        }}
+        wrapperStyle={{
+          position: "relative",
+          width: "100%",
+          height: "80%",
+
         }}
       />
-      </div>
-      <div className="bg-black hidden h-full  lg:mt-0 lg:block w-2  lg:h-full rounded-md"></div>
-      <div className="w-full lg:w-1/2  h-full p-2">
-        <div className="p-4 lg:mt-0 mt-10 border-2 border-gray-700 rounded-lg w-full h-3/4 overflow-scroll">
-      <p className="text-center">{html}</p>
-      </div>
-      <div className="flex justify-around text-center mt-10">
+       <div className="flex justify-around text-center mt-36 lg:mt-20">
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={() => {

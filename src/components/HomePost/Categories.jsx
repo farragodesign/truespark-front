@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Axios from '../../Axios'
 import CardModel from '../Card'
 import CardLoading from '../CardLoading'
+import Aos from 'aos'
+import 'aos/dist/aos.css'
 
 const Categories = () => {
     const [categories,setCategories] = useState(null)
@@ -14,6 +16,11 @@ const Categories = () => {
         Axios.get('/articles').then((data)=>{
             setArticles(data.data.blogs)
         })
+
+        // initilizing aos
+        Aos.init({
+            duration: 1000,
+        });
     },[])
     console.log(categories);
     console.log(articles);
@@ -24,7 +31,7 @@ const Categories = () => {
             categories.map((category,index)=>{
                 return( 
                     <div key={index}>
-                        <h1 className={`uppercase text-blue-800 font-bold text-3xl my-4 font-anak text-center`}>{category.name}</h1>
+                        <h1 data-aos="fade-up"  data-aos-anchor-placement="center-bottom" className={`uppercase text-blue-800 font-bold text-3xl my-4 font-anak text-center`}>{category.name}</h1>
                         <div className="flex flex-wrap justify-center">
                         <div className=' w-full flex flex-wrap items-center justify-center md:justify-between md:m-3'>
                             {

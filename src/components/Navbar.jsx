@@ -7,6 +7,8 @@ import ErrorToast from './ErrorToast'
 import LoginControl from './LoginControl'
 import { useNavigate } from 'react-router-dom'
 import { AdminContext } from '../context/AdminContext'
+import jwt_decode from 'jwt-decode'
+
 
 const HomeNavbar = () => {
   const navigate = useNavigate()
@@ -27,8 +29,57 @@ const HomeNavbar = () => {
           console.log(err)
       }
       )
-    
+
+
+
+      
+    setTimeout(() => {
+      if(localStorage.getItem('jwt')){
+      console.log('script not loaded with user and admin')
+      }else{ 
+        initializeGsi()
+      console.log('initialized');
+      }
+      }, 5000)
+
   },[])
+  
+
+
+  const onOneTapSignedIn = ( response => {
+       const decodedToken = jwt_decode(response.credential) 
+
+      Axios.post("users/loginwithgoogle", {
+              name: decodedToken.name,
+              email: decodedToken.email,
+            })
+              .then((res) => {
+                console.log(res);
+                localStorage.setItem("jwt", res.data.token);
+                setUser(res.data.user)
+                window.location.href = "/about";
+              }
+              )
+
+   })
+
+
+     const initializeGsi = () => {
+        window.google.accounts.id.initialize({
+            client_id: '691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com',
+            callback: onOneTapSignedIn
+        });
+        window.google.accounts.id.prompt(notification => {
+            console.log(notification)
+        });
+ }
+ 
+   
+
+
+  
+
+
 
   const logoutHandler = () => {
     const jwt = localStorage.getItem('jwt')

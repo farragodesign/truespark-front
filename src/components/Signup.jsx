@@ -1,4 +1,6 @@
-import React, { useState ,useContext } from 'react'
+import { gapi } from 'gapi-script'
+import React, { useState ,useContext, useEffect } from 'react'
+import GoogleLogin from 'react-google-login'
 import Axios from '../Axios'
 import Alert from './Alert'
 import Spinner from './Spinner'
@@ -59,6 +61,45 @@ const Signup = ({onClick , isLogin , onSignup}) => {
             )
         }
     }
+
+
+
+    useEffect(() => {
+        function start() {
+          gapi.client.init({
+            clientId: '691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com',
+            scope: 'email',
+          });
+        }
+      
+        gapi.load('client:auth2', start);
+      }, []);
+      
+      
+          
+      
+          const handleFailure = (result) => {
+        alert(result.details)
+        console.log(result);
+      };
+      
+      const handleLogin = async (googleData) => {
+        console.log(googleData);
+      
+      
+      Axios.post("users/loginwithgoogle", {
+          name: googleData.profileObj.name,
+          email: googleData.profileObj.email,
+        })
+          .then((res) => {
+            console.log(res);
+            localStorage.setItem("jwt", res.data.token);
+            setUser(res.data.user)
+            // localStorage.setItem("user", JSON.stringify(res.data.user));
+            window.location.href = "/about";
+          }
+          )
+      };
   return (
    
     <div className={`-translate-y-100 opacity-0  absolute p-4 w-11/12 md:w-1/2 lg:w-1/4 mx-4 bg-white rounded-lg border border-gray-200 shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700 transition-all duration-1000 ${isLogin && 'translate-y-0 opacity-100'}`}>
@@ -82,6 +123,32 @@ const Signup = ({onClick , isLogin , onSignup}) => {
                 <input onChange={(e) => setConformPassword(e.target.value)} value={conformPassword} type="password" name="conform-password" id="conform-password" placeholder="your password here..." className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required="" />
             </div>
             <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{isLoading ? <Spinner/> : 'signup'} </button>
+           <p className='text-center'>or</p>
+           <div className='flex w-full justify-center'>
+          <GoogleLogin
+            clientId={
+              "691779687682-ks0pd75tv4uqg5hjmhp54m2m3h0lvvdr.apps.googleusercontent.com"
+            }
+            buttonText="Log in with Google"
+            // costumebtn
+            render={(renderProps) => (
+                <div
+                    onClick={renderProps.onClick}
+                    disabled={renderProps.disabled}
+                    className="google-btn"
+                >
+                   <div class="google-icon-wrapper">
+    <img class="google-icon" src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"/>
+  </div>
+  <p class="btn-text"><b>Signup with google</b></p>
+                </div>
+            )}
+            
+            onSuccess={handleLogin}
+            onFailure={handleFailure}
+            cookiePolicy={"single_host_origin"}
+          ></GoogleLogin>
+          </div>
             <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
                 Already have account? <span onClick={onSignup} className="text-blue-700 hover:underline dark:text-blue-500">Login</span>
             </div>

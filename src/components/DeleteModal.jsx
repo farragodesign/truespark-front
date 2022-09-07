@@ -42,7 +42,7 @@ const DeleteModal = ({ closeModal , name, id , category ,isCategory , setAllData
             : "Something went wrong"
         );
         setIsLoading(false);
-        setTimeout(()=> setNameHere(""),1000 ) 
+        setTimeout(()=> setNameHere(""),1000) 
         setTimeout(() => closeModal(), 1500);
       });
   };
