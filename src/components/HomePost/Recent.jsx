@@ -11,8 +11,6 @@ function Recent() {
     const [data, setData] = useState(null);
     useEffect(() => {
         axios.get("https://truespark.herokuapp.com/api/v1/articles/recent?limit=4").then((res) => {
-            console.log(res.data);
-            setData(res.data.blogs);
         });
 
         // initilizing aos

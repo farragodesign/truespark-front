@@ -18,7 +18,6 @@ const ArticleView = () => {
     Axios.get(`/articles/${id}`)
       .then((data) => {
         setArticle(data.data.blog)
-        console.log(data.data.blog);
         window.scrollTo(0, 0)
       }
       )

@@ -4,7 +4,6 @@ function Footer() {
   const [Newsletter, setNewsletter] = useState('');
 
   const Newsletter_SubmitHandler = (e) => {
-    console.log(Newsletter);
 
     e.preventDefault();
     setNewsletter('');

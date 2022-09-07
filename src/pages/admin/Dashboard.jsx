@@ -52,7 +52,6 @@ const Dashboard = () => {
       });
   };
 
-  console.log(categories);
   const getUsers = () => {
     const jwt = localStorage.getItem("jwt");
     Axios.post("/users", { jwt })
@@ -69,11 +68,9 @@ const Dashboard = () => {
   const filterUsersOnThisMonth = (users) => {
     const thisMonth = new Date().getMonth();
     const thisYear = new Date().getFullYear();
-    console.log(thisMonth);
 
     const thisMonthUsers = users.filter((user) => {
       const userMonth = new Date(user.createdAt).getMonth();
-      console.log(userMonth);
       const userYear = new Date(user.createdAt).getFullYear();
       return userMonth === thisMonth && userYear === thisYear;
     });
@@ -101,9 +98,7 @@ const Dashboard = () => {
           usersInThisMonth={filterUsersOnThisMonth(users).length}
         />
       </div>
-      {/* <div className="m-0 md:mx-8 md:my-4 left-2 md:left-1/3 absolute">
-        <ListSideBar />
-      </div> */}
+      
       <div className="relative w-full md:w-7/12 flex justify-center my-4 md:my-0">
         <div
           className={`-translate-x-20 duration-500 opacity-0 transition-all w-2/12 md:w-auto m-0 md:m-4 ${

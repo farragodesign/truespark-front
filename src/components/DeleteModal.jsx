@@ -35,7 +35,6 @@ const DeleteModal = ({ closeModal , name, id , category ,isCategory , setAllData
         setAllData(id);
     })
       .catch((err) => {
-        console.log(err);
         setIsError(
           err.response.data.message
             ? err.response.data.message
@@ -68,7 +67,6 @@ const DeleteModal = ({ closeModal , name, id , category ,isCategory , setAllData
     }
     )
       .catch((err) => {
-        console.log(err);
         setIsError(
           err.response.data.message
             ? err.response.data.message

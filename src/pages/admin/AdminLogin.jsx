@@ -22,12 +22,9 @@ const AdminLogin = () => {
    
  useEffect(()=>{
         if (admin) {
-            console.log(admin);
-            // setTimeout(()=> 
             navigate('/dashbord')
-            // ,100)
         }else{
-            console.log('NO ADMIN');
+            // else case here
         }
         setTimeout(() => setAnimate(true) , 100)
     })
@@ -43,7 +40,6 @@ const AdminLogin = () => {
         }
         else {
             Axios.post('/admin/login', { usename : username, password }).then((res) => {
-                console.log(res.data);
                 if (res.data.message) {
                     setError(res.data.message)
                     setTimeout(() => setError(''), 3000)
@@ -51,7 +47,6 @@ const AdminLogin = () => {
                 }
                 else {
                     setIsLoading(false)
-                    console.log(res.data);
                     localStorage.setItem('jwt',res.data.token)
                     setAdmin(res.data.admin)
                     setTimeout(() => navigate('/dashboard') , 100)
@@ -59,7 +54,6 @@ const AdminLogin = () => {
                     setPassword('')
                 }
             }).catch((err) => {
-                console.log(err);
                 setIsLoading(false)
                 setError(err.response.data.message ? err.response.data.message :'Something went wrong')
                 setTimeout(() => setError(''), 3000)

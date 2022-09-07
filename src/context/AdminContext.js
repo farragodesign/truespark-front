@@ -9,10 +9,8 @@ export const AdminProvider = (props) => {
         try {
             const jwt = localStorage.getItem("jwt")
             const response = await Axios.post("/admin/checkAdminLoggedIn", { jwt })
-            console.log(response.data.admin);
             setAdmin(response.data.admin)
         } catch (error) {
-            console.log(error)
             setAdmin(null)
         }
     }

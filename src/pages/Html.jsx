@@ -43,12 +43,7 @@ function CreateHtml() {
           backgroundColor: "white",
           borderRadius: "0.5rem",
           boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          padding: "0.5rem",
-          // position: "absolute",
-          // zIndex: "10",
-          // left:"0",
-          // right:"0",
-          // top:'0'
+          padding: "0.5rem"
         }}
         editorStyle={{
           border: "1px solid #ddd",
@@ -56,8 +51,7 @@ function CreateHtml() {
           borderRadius: "0.5rem",
           padding: "0.5rem",
           overflow: "scroll",
-          height: "100%",
-          // paddingTop: "var(--particular-ad) " 
+          height: "100%"
         }}
         wrapperStyle={{
           position: "relative",

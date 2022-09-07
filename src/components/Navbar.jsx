@@ -22,11 +22,10 @@ const HomeNavbar = () => {
 
   useEffect(()=>{
       Axios.get('/categories').then((data)=>{
-        console.log(data.data.categories);
           setCategories(data.data.categories)
       }
       ).catch((err)=>{
-          console.log(err)
+        // you can add a toast here
       }
       )
 
@@ -35,10 +34,9 @@ const HomeNavbar = () => {
       
     setTimeout(() => {
       if(localStorage.getItem('jwt')){
-      console.log('script not loaded with user and admin')
+        // the user is logged in
       }else{ 
         initializeGsi()
-      console.log('initialized');
       }
       }, 5000)
 
@@ -54,10 +52,9 @@ const HomeNavbar = () => {
               email: decodedToken.email,
             })
               .then((res) => {
-                console.log(res);
                 localStorage.setItem("jwt", res.data.token);
                 setUser(res.data.user)
-                window.location.href = "/about";
+                window.location.reload();
               }
               )
 
@@ -70,7 +67,6 @@ const HomeNavbar = () => {
             callback: onOneTapSignedIn
         });
         window.google.accounts.id.prompt(notification => {
-            console.log(notification)
         });
  }
  
@@ -84,7 +80,6 @@ const HomeNavbar = () => {
   const logoutHandler = () => {
     const jwt = localStorage.getItem('jwt')
     Axios.post('/users/logout' , {jwt}).then(res => {
-      console.log(res.data)
       if (res.data.message) {
         setErrorOnLogout(res.data.message)
         setTimeout(() => setErrorOnLogout(''), 3000)
@@ -98,7 +93,6 @@ const HomeNavbar = () => {
       }
     }
     ).catch(err => {
-      console.log(err ? err.response.data.message : 'Something went wrong');
       setErrorOnLogout(err ? err.response.data.message : 'Something went wrong')
       setTimeout(() => setErrorOnLogout(''), 3000)
     }
@@ -108,7 +102,6 @@ const HomeNavbar = () => {
   const adminLogout = () => {
     const jwt = localStorage.getItem('jwt')
     Axios.post('/admin/logout' , {jwt}).then(res => {
-      console.log(res.data)
       if (res.data.message) {
         setErrorOnLogout(res.data.message)
         setTimeout(() => setErrorOnLogout(''), 3000)
@@ -122,7 +115,6 @@ const HomeNavbar = () => {
       }
     }
     ).catch(err => {
-      console.log(err ? err.response.data.message : 'Something went wrong');
       setErrorOnLogout(err ? err.response.data.message : 'Something went wrong')
       setTimeout(() => setErrorOnLogout(''), 3000)
     }
@@ -134,7 +126,6 @@ const HomeNavbar = () => {
       <nav className="bg-slate-50 border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray- fixed z-100 w-full m-0 top-0">
         <div className="container flex justify-between flex-wrap w-full items-center mx-auto ">
           <Link to="/" className="flex items-center">
-            {/* <img src="/logo.svg" className="mr-3 h-6 sm:h-9" alt="Logo" /> */}
             <span className="font-poppins self-center text-2xl text-slate-900 whitespace-nowrap dark:text-white">true<span className='font-bold'>spark</span></span>
           </Link>
           <div className="flex md:order-2  w-auto justify-end">
@@ -178,7 +169,7 @@ const HomeNavbar = () => {
         </div>
       </nav>
 
-      {isOpen ? console.log('isOpen') : console.log('notOpen')}
+
       {
         
         <aside className={`translate-x-100   w-48 fixed md:hidden z-50 right-0 top-14 transition-all ${isOpen && 'translate-x-0.5'}`} aria-label="Sidebar">

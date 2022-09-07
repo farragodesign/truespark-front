@@ -7,11 +7,9 @@ const CommentedUser = ({userName,i}) => {
     const [name, setName] = useState({})
     const {user} = useContext(UserContext)
 
-    console.log("the all user is", name);
  
 
   useEffect(() => {
-    console.log(i);
 
     Axios.get(`/users/${userName}`)
     .then(res => {
@@ -25,7 +23,7 @@ const CommentedUser = ({userName,i}) => {
     }
     )
     .catch(err => {
-        // console.log(err)
+        // you can add a toast here
     }
     )
     }

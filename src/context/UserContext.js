@@ -11,7 +11,6 @@ export const UserProvider = (props) => {
       const response = await Axios.post("/users/checkLoggedIn", { jwt });
       setUser(response.data.user);
     } catch (error) {
-      console.log(error);
     }
   };
   useEffect(() => {

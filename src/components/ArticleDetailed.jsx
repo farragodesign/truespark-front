@@ -195,7 +195,7 @@ const ArticleDetailed = ({ article }) => {
               <svg
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `https://truespark.ml/article/${article._id}`
+                    `https://truespark.live/article/${article._id}`
                   );
                   setIsCopy(true);
                   setTimeout(() => setIsCopy(false), 3000);

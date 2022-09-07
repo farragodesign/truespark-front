@@ -40,7 +40,6 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
       duration: 1000,
     });
 
-    // Aos.refresh();
 
 
     // getting the category of the article by id
@@ -242,7 +241,7 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
                 color="indigo"
                 onClick={() => {
                   navigator.clipboard.writeText(
-                    `https://truespark.ml/article/${id}`
+                    `https://truespark.live/article/${id}`
                   );
                   setIsCopy(true);
                   setTimeout(() => setIsCopy(false), 3000);

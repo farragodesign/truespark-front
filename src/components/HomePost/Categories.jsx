@@ -11,7 +11,6 @@ const Categories = () => {
     useEffect(()=>{
         Axios.get('/categories').then((data)=>{
             setCategories(data.data.categories)
-            console.log('catggory mounted');
         })
         Axios.get('/articles').then((data)=>{
             setArticles(data.data.blogs)
@@ -22,8 +21,6 @@ const Categories = () => {
             duration: 1000,
         });
     },[])
-    console.log(categories);
-    console.log(articles);
   return (
     <div>  
         {

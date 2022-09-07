@@ -7,7 +7,6 @@ import ErrorToast from "../../components/ErrorToast";
 import Spinner from "../../components/Spinner";
 import SuccessTost from "../../components/SuccessTost";
 
-
 const EditItems = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState("");
@@ -27,12 +26,11 @@ const EditItems = () => {
   useEffect(() => {
     Axios.get(`/articles/${id}`)
       .then((res) => {
-        console.log(res.data.blog);
         setData(res.data.blog);
-        setTitle(res.data.blog.title);  // lervpgzw
+        setTitle(res.data.blog.title); // lervpgzw
         setContent(res.data.blog.content);
         setImage(res.data.blog.image);
-        setImageUrl( res.data.blog.image);
+        setImageUrl(res.data.blog.image);
         setCategory(res.data.blog.category._id);
         setAuthor(res.data.blog.author);
         setIsLoading(false);
@@ -63,53 +61,40 @@ const EditItems = () => {
       "https://api.cloudinary.com/v1_1/defrflfmj/image/upload",
       formData
     );
-  }
-
+  };
 
   // updating the article
   const editHandler = (e) => {
-    e.preventDefault();  
+    e.preventDefault();
     setIsLoading(true);
     const jwt = localStorage.getItem("jwt");
-    uploadToCloudinary(image)
-      .then((res) => {
-        const imageUrl_HERE = res.data.secure_url;
-        const data = {
-          title,
-          content,
-          image: imageUrl_HERE,
-          category,
-          author,
-          jwt,
-        };
-        console.log(data);
-        Axios.patch(`/articles/${id}`, data)
-          .then((res) => {
-            setIsLoading(false);
-            console.log(res.data);
-            setIsSuccess(true);
-            setTimeout(() => {
-              setIsSuccess(false);
-            }
-            , 3000);
-          }
-          )
-          .catch((err) => {
-            setIsError(err.message);
-            setTimeout(() => {
-                setIsError('');
-                }
-                , 3000);
-            setIsLoading(false);
-          }
-          );
-
-      })
-
-
-  
-  }
-
+    uploadToCloudinary(image).then((res) => {
+      const imageUrl_HERE = res.data.secure_url;
+      const data = {
+        title,
+        content,
+        image: imageUrl_HERE,
+        category,
+        author,
+        jwt,
+      };
+      Axios.patch(`/articles/${id}`, data)
+        .then((res) => {
+          setIsLoading(false);
+          setIsSuccess(true);
+          setTimeout(() => {
+            setIsSuccess(false);
+          }, 3000);
+        })
+        .catch((err) => {
+          setIsError(err.message);
+          setTimeout(() => {
+            setIsError("");
+          }, 3000);
+          setIsLoading(false);
+        });
+    });
+  };
 
   return (
     <div className="flex w-full h-fit items-center justify-center mt-20 container_here">
@@ -126,8 +111,7 @@ const EditItems = () => {
         </h1>
 
         <div className="mt-5 md:mt-0 md:col-span-2">
-          <form onSubmit={(e)=> editHandler(e)}
-          >
+          <form onSubmit={(e) => editHandler(e)}>
             <div className="shadow sm:rounded-md sm:overflow-hidden">
               <div className="px-4 py-5 bg-white space-y-6 sm:p-6">
                 <div className="grid grid-cols-3 gap-6">
@@ -136,12 +120,10 @@ const EditItems = () => {
                       for="company-website"
                       className="block text-sm font-medium text-gray-700"
                     >
-                     
                       Title
                     </label>
                     <div className="mt-1 flex rounded-md shadow-sm">
                       <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                        
                         ADMIN
                       </span>
                       <input
@@ -162,7 +144,6 @@ const EditItems = () => {
                     for="about"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    
                     Body
                   </label>
                   <div className="mt-1">
@@ -176,8 +157,14 @@ const EditItems = () => {
                       placeholder="please write your body here .........."
                     ></textarea>
                   </div>
-                  <span className='text-xs'>for customization use <Link to={'/html'}><button className='rounded-md bg-blue-700 p-1 text-white font-anak'>html editor</button></Link> </span>
-
+                  <span className="text-xs">
+                    for customization use{" "}
+                    <Link to={"/html"}>
+                      <button className="rounded-md bg-blue-700 p-1 text-white font-anak">
+                        html editor
+                      </button>
+                    </Link>{" "}
+                  </span>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -210,20 +197,18 @@ const EditItems = () => {
                     autocomplete="country-name"
                     class="mt-1 block w-full overflow-hidden py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                   >
-                    {
-                      categories.map((category) => {  
-                        return (
-                          <option key={category._id} value={category._id}>{category.name}</option>
-                        )
-                      }
-                      )
-                    }
+                    {categories.map((category) => {
+                      return (
+                        <option key={category._id} value={category._id}>
+                          {category.name}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-700">
-                   
                     Cover photo
                   </label>
                   <div className="mt-1 flex  px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
@@ -253,7 +238,12 @@ const EditItems = () => {
                             name="file-upload"
                             type="file"
                             className="sr-only"
-                            onChange={(e) => {setImage(e.target.files[0]);setImageUrl(URL.createObjectURL(e.target.files[0]));console.log(URL.createObjectURL(e.target.files[0]));}}
+                            onChange={(e) => {
+                              setImage(e.target.files[0]);
+                              setImageUrl(
+                                URL.createObjectURL(e.target.files[0])
+                              );
+                            }}
                           />
                         </label>
                         <p className="pl-1">or drag and drop</p>
@@ -262,26 +252,32 @@ const EditItems = () => {
                         PNG, JPG, GIF up to 10MB
                       </p>
                     </div>
-                     <div className="w-1/2  overflow-hidden ">
-                      <div className="flex items-center justify-center max-w-xs h-full border-2 rounded-lg border-slate-300 border-solid "> 
-
-                        {
-                          imageUrl
-                          ? <img
-                          src={imageUrl && imageUrl}
-                          alt="avatar"
-                          className="object-cover rounded-lg"
+                    <div className="w-1/2  overflow-hidden ">
+                      <div className="flex items-center justify-center max-w-xs h-full border-2 rounded-lg border-slate-300 border-solid ">
+                        {imageUrl ? (
+                          <img
+                            src={imageUrl && imageUrl}
+                            alt="avatar"
+                            className="object-cover rounded-lg"
                           />
-                          :
-                           <svg class="w-10 h-10 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                          
-                              
-                          
-                        }
-
-                        </div> 
-                          </div>
-
+                        ) : (
+                          <svg
+                            class="w-10 h-10 text-slate-400"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                            ></path>
+                          </svg>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -290,16 +286,23 @@ const EditItems = () => {
                   type="submit"
                   className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-700 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
-                {isLoading ? <Spinner/> : 'Publish'}
-
+                  {isLoading ? <Spinner /> : "Publish"}
                 </button>
               </div>
             </div>
           </form>
         </div>
       </div>
-      {isError && <ErrorToast onClick={()=>setIsError(false)} event={isError}/>}
-      {isSuccess && <SuccessTost isSuccess={isSuccess} setSuccess={()=> setIsSuccess(false)} data={'item edited successfully'} />}
+      {isError && (
+        <ErrorToast onClick={() => setIsError(false)} event={isError} />
+      )}
+      {isSuccess && (
+        <SuccessTost
+          isSuccess={isSuccess}
+          setSuccess={() => setIsSuccess(false)}
+          data={"item edited successfully"}
+        />
+      )}
     </div>
   );
 };

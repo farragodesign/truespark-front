@@ -12,10 +12,8 @@ const CategoryList = ({ categories ,setName ,setId , setIsCategoryEdit , setIsCa
     }
     , [categories])
 
-  console.log(isDeleteToggle);
   // give a color to each user
   const color = ["green", "blue", "red", "yellow"];
-  console.log(categories);
 
   return (
     <div>
