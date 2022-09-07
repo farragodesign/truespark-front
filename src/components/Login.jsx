@@ -74,7 +74,6 @@ const Login = ({ onClick, isLogin ,onSignup }) => {
 
 
     const handleFailure = (result) => {
-  alert(result.details)
   console.log(result);
 };
 
