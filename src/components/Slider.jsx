@@ -13,12 +13,11 @@ function Slider() {
     const handleCategory = (category) => {
         Axios.get(`/categories/${category?category:''}`)
    .then((res)=>{
-       console.log(res);
        setCategory(res.data.category.name)
    }
    )
    .catch((err)=>{
-       console.log(err);
+    // you error here
    }
    )
 }
@@ -27,7 +26,6 @@ function Slider() {
 
     useEffect(() => {
         Axios.get("/articles?limit=4").then((res) => {
-            console.log(res.data);
             setData(res.data.blogs);
             res.data.blogs.map((data,i)=>{
                 handleCategory(data.category)
