@@ -33,7 +33,8 @@ function Filtered() {
         <meta name="description" 
           content="True Spark, True Spark platform, True Spark platform for students, True Spark platform for students to share their knowledge and ideas"
           />
-        <meta name="keywords" content={category && category.name} />
+        <meta name="keywords" content={`${category && category.name} Treuspark , truspark ,ts live ,truesp ,ts , tpark , article , best article , islamic ,trespark , true spark , dhiu students , dhiu , students organization, True Spark , Truespark live , true spark live ,website of truespark, 
+          darul huda , thelicham ,True Spark platform`} />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://www.truespark.live/category/${category && category._id}`} />
       </Helmet>

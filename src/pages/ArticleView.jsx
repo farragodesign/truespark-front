@@ -33,7 +33,8 @@ const ArticleView = () => {
         <title>{article.title}</title>
         {/* first 25 letters of article.content */}
         <meta name="description" content={article.content && article.content.substring('0','130')} />
-        <meta name="keywords" content={article.category && article.category.name} />
+        <meta name="keywords" content= {` ${article.category && article.category.name}  Treuspark , truspark ,ts live ,truesp ,ts , tpark , article , best article , islamic ,trespark , true spark , dhiu students , dhiu , students organization, True Spark , Truespark live , true spark live ,website of truespark, 
+          darul huda , thelicham ,True Spark platform` } />
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href={`https://www.truespark.live/article/${article._id}`} />
       </Helmet>

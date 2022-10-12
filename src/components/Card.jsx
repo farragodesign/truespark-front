@@ -167,8 +167,8 @@ function CardModel({ title, like, likedBy, image, category, id, setAllData }) {
     );
   };
   return (
-    <div className=" md:m-0 w-72 " data-aos="fade-up"  >
-      <div className=" h-72 mt-4  overflow-hidden transition-all rounded-md  shadow-lg shadow-slate-300 m-2 hover:scale-105">
+    <div className=" md:m-0 w-72 "  >
+      <div data-aos="fade-up"  className=" h-72 mt-4  overflow-hidden transition-all rounded-md  shadow-lg shadow-slate-300 m-2 hover:scale-105">
         <Link
           to={`/article/${id}`}
           className="w-full h-40  flex items-center justify-center"

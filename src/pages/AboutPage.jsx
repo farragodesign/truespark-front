@@ -16,7 +16,7 @@ const AboutPage = () => {
         />
         <meta
           name="keywords"
-          content="Treuspark , True Spark , Truespark live , true spark live ,website of truespark, 
+          content=" Treuspark , truspark ,ts live ,truesp ,ts , tpark , article , best article , islamic ,trespark , true spark , dhiu students , dhiu , students organization, True Spark , Truespark live , true spark live ,website of truespark, 
           darul huda , thelicham ,True Spark platform"
         />
         <meta name="robots" content="index, follow" />
